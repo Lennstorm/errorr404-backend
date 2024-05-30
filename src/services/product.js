@@ -3,27 +3,27 @@ import nedb from "nedb-promises";
 const database = new nedb({ filename: "product.db", autoload: true });
 
 // Add new menu item
-async function createMenuItem(menuItem) {
+async function createProduct(product) {
   try {
-    const newMenuItem = await database.insert(menuItem);
-    console.log(newMenuItem);
+    const newProduct = await database.insert(product);
+    console.log(newProduct);
   } catch (error) {
     console.error(error);
   }
 }
 
 // Get all menu items
-async function getAllMenuItems() {
+async function getAllProducts() {
   try {
-    const menuItems = await database.find({});
-    return menuItems;
+    const products = await database.find({});
+    return products;
   } catch (error) {
     console.error(error);
   }
 }
 
 // Get specific menu item
-async function getMenuItemById(id) {
+async function getProductById(id) {
   try {
     return await database.findOne({ id: id });
   } catch (error) {
@@ -32,12 +32,12 @@ async function getMenuItemById(id) {
 }
 
 // Update menu item
-async function updateMenuItem(id, updatedMenuItem) {
+async function updateProduct(id, updatedProduct) {
   try {
-    const menuItem = await database.findOne({ id: id });
+    const product = await database.findOne({ id: id });
     return await database.update(
-      { _id: menuItem._id },
-      { $set: updatedMenuItem }
+      { _id: product._id },
+      { $set: updatedProduct }
     );
   } catch (error) {
     console.error(error);
@@ -45,19 +45,19 @@ async function updateMenuItem(id, updatedMenuItem) {
 }
 
 // Delete menu item
-async function deleteMenuItem(id) {
+async function deleteProduct(id) {
   try {
-    const deletedMenuItem = await database.remove({ id: id });
-    console.log(deletedMenuItem);
+    const deletedProduct = await database.remove({ id: id });
+    console.log(deletedProduct);
   } catch (error) {
     console.error(error);
   }
 }
 
 export {
-  createMenuItem,
-  getAllMenuItems,
-  getMenuItemById,
-  updateMenuItem,
-  deleteMenuItem,
+  createProduct,
+  getAllProducts,
+  getProductById,
+  updateProduct,
+  deleteProduct,
 };
