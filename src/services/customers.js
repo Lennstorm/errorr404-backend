@@ -69,10 +69,32 @@ async function deleteCustomer(id) {
   }
 }
 
+// Function to find a customer by email
+async function findCustomerByEmail(email) {
+  try {
+    const customer = await database.findOne({ email });
+    return customer;
+  } catch (error) {
+    throw new Error("Failed to find customer by email");
+  }
+}
+
+// Function to find a customer by phone number
+async function findCustomerByPhoneNumber(phoneNumber) {
+  try {
+    const customer = await database.findOne({ phoneNumber });
+    return customer;
+  } catch (error) {
+    throw new Error("Failed to find customer by phone number");
+  }
+}
+
 export {
   createCustomer,
   getAllCustomers,
   getCustomerById,
   updateCustomer,
   deleteCustomer,
+  findCustomerByEmail,
+  findCustomerByPhoneNumber,
 };

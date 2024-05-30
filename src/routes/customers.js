@@ -1,6 +1,6 @@
 // routes/customers.js
 import { Router } from "express";
-import { validateCustomer } from "../middleware/validationMiddleware.js"; // Import the validation middleware
+import { validateCustomer } from "../middleware/customersValidation.js"; // Import the validation middleware
 import {
   createCustomer,
   getAllCustomers,
