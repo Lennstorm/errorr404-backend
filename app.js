@@ -1,14 +1,16 @@
 import express from "express";
 import productRouter from "./src/routes/products.js";
 import aboutRouter from "./src/routes/about.js";
+import cors from "cors";
 
 const app = express();
 
 //Middlewares
 app.use(express.json());
+app.use(cors());
 
 //Routes
-app.use("/products", productRouter);
+app.use("/api/products", productRouter);
 app.use("/about", aboutRouter);
 
 // Start the server
