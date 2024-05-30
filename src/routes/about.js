@@ -1,13 +1,12 @@
 import { Router } from "express";
-import { menu } from "../../config/data.js";
+import { aboutInfo } from "../../config/data.js";
 
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.json(menu);
+  res.json(aboutInfo);
 });
-
 
 export default router;
 
-//GET localhost:3000/products
+//GET localhost:3000/about
