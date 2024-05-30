@@ -1,12 +1,13 @@
 import { Router } from "express";
-import { menu } from "../../config/data.js";
+import { createMenuItem } from "../services/product.js";
 
 const router = Router();
 
+//Post new movie
 router.get("/", (req, res) => {
-  res.json(menu);
+  createMenuItem(req.body);
+  res.json({ message: "hello hello" });
 });
-
 
 export default router;
 

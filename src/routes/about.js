@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { aboutInfo } from "../../config/data.js";
+import { aboutInfo } from "../../config/about.js";
 
 const router = Router();
 
