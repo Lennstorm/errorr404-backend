@@ -2,6 +2,45 @@ import nedb from "nedb-promises";
 
 const database = new nedb({ filename: "product.db", autoload: true });
 
+const defaultProducts = [
+  {
+    id: 1,
+    title: "Bryggkaffe",
+    desc: "Bryggd på månadens bönor.",
+    price: 39,
+  },
+  {
+    id: 2,
+    title: "Caffè Doppio",
+    desc: "Bryggd på månadens bönor.",
+    price: 49,
+  },
+  {
+    id: 3,
+    title: "Cappuccino",
+    desc: "Bryggd på månadens bönor.",
+    price: 49,
+  },
+  {
+    id: 4,
+    title: "Latte Macchiato",
+    desc: "Bryggd på månadens bönor.",
+    price: 49,
+  },
+  {
+    id: 5,
+    title: "Kaffe Latte",
+    desc: "Bryggd på månadens bönor.",
+    price: 54,
+  },
+  {
+    id: 6,
+    title: "Cortado",
+    desc: "Bryggd på månadens bönor.",
+    price: 39,
+  },
+];
+
 // Add new menu item
 async function createProduct(product) {
   try {
@@ -54,10 +93,26 @@ async function deleteProduct(id) {
   }
 }
 
+// Initialize database with default data if empty
+async function initializeDatabase() {
+  try {
+    const count = await database.count({});
+    if (count === 0) {
+      for (const product of defaultProducts) {
+        await createProduct(product);
+      }
+      console.log("Default products inserted.");
+    }
+  } catch (error) {
+    console.error("Error initializing database: ", error);
+  }
+}
+
 export {
   createProduct,
   getAllProducts,
   getProductById,
   updateProduct,
   deleteProduct,
+  initializeDatabase,
 };

@@ -3,6 +3,7 @@ import customerRouter from "./src/routes/customers.js";
 import productRouter from "./src/routes/products.js";
 import aboutRouter from "./src/routes/about.js";
 import cors from "cors";
+import { initializeDatabase } from "./src/services/product.js";
 
 const app = express();
 
@@ -15,8 +16,15 @@ app.use("/api/customers", customerRouter);
 app.use("/api/products", productRouter);
 app.use("/about", aboutRouter);
 
-// Start the server
+// Initialize the database with default data if empty, then start the server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+initializeDatabase()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Failed to initialize the database:", error);
+    process.exit(1);
+  });
