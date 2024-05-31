@@ -1,4 +1,4 @@
-import orderSchema from "../models/ordersSchema";
+import orderSchema from "../models/orderSchema";
 
 export const validateOrder = (req, res, next) => {
     const { error } = orderSchema.validate(req.body);
@@ -7,4 +7,4 @@ export const validateOrder = (req, res, next) => {
     } else {
         return res.status(400).json({ error: error.details[0].message })
     }
-};
+}
