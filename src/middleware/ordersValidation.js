@@ -1,4 +1,4 @@
-import orderSchema from "../models/orderSchema";
+import orderSchema from "../models/orderSchema.js";
 
 export const validateOrder = (req, res, next) => {
     const { error } = orderSchema.validate(req.body);
