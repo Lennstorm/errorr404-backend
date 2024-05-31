@@ -3,6 +3,7 @@ import customerRouter from "./src/routes/customers.js";
 import productRouter from "./src/routes/products.js";
 import aboutRouter from "./src/routes/about.js";
 import cartRouter from "./src/routes/cart.js";
+import loginRouter from "./src/routes/login.js";
 import cors from "cors";
 import { initializeDatabase } from "./src/services/product.js";
 
@@ -16,7 +17,8 @@ app.use(cors());
 app.use("/api/customers", customerRouter);
 app.use("/api/products", productRouter);
 app.use("/about", aboutRouter);
-app.use('/cart', cartRouter);
+app.use("/cart", cartRouter);
+app.use("/api/login", loginRouter);
 
 // Initialize the database with default data if empty, then start the server
 const PORT = process.env.PORT || 3000;
