@@ -3,7 +3,7 @@
 
 Routes starting with `:id` are protected. The `:id` parameter needs to be replaced by the user NeDB `_id`.
 
-Default user in database. Login using email and phone number. Use `_id` value to access protected routes.
+Below is the default user in the database. Login using email and phone number. Use `_id` value to access protected routes.
 
 ````json
 {
