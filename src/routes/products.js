@@ -10,6 +10,8 @@ import {
 
 const router = Router();
 
+// URL for CRUD operations: localhost:3000/api/products
+
 // GET all menu items
 router.get("/", async (req, res) => {
   const products = await getAllProducts();
