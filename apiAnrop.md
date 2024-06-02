@@ -8,7 +8,7 @@ Routes starting with `:id` are protected. The `:id` parameter needs to be replac
 
 Default user in database. Login using email and phone number. Use `_id` value to access protected routes.
 
-`````json
+````json
 {
     "firstName": "John",
     "lastName": "Doe",
@@ -16,7 +16,7 @@ Default user in database. Login using email and phone number. Use `_id` value to
     "password": "password123",
     "phoneNumber": "+1234567890",
     "_id": "xbc9Nbod8wWdPzRd"
-}````
+}```
 
 
 ###CUSTOMERS
@@ -49,7 +49,7 @@ POST login user http://localhost:3000/api/login
         {
             "email": "Joi.string().email().required()",
             "phoneNumber": "Joi.string()"
-        }````
+        }```
 
 
 
@@ -95,4 +95,4 @@ DELETE specific customer order history http://localhost:3000/:customerID/api/ord
 ABOUT
 
 GET about information http://localhost:3000/about
-`````
+````
