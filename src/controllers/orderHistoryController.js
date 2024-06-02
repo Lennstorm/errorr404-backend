@@ -1,14 +1,14 @@
 import {
   createOrUpdateOrderHistory,
   getAllOrderHistories,
-  getOrderHistoryByUserId,
+  getOrderHistoryById,
   deleteOrderHistory,
 } from "../services/orderHistory.js";
 
 export const getOrderHistory = async (req, res) => {
-  const { userId } = req.params;
+  const { id } = req.params;
   try {
-    const orderHistory = await getOrderHistoryByUserId(Number(userId));
+    const orderHistory = await getOrderHistoryById(id);
     if (!orderHistory) {
       return res.status(200).json({ message: "Order History is empty" });
     }
@@ -43,9 +43,9 @@ export const getAllOrderHistoriesHandler = async (req, res) => {
 };
 
 export const deleteOrderHistoryHandler = async (req, res) => {
-  const { userId } = req.params;
+  const { id } = req.params;
   try {
-    const result = await deleteOrderHistory(Number(userId));
+    const result = await deleteOrderHistory(id);
     return res.status(200).json(result);
   } catch (error) {
     return res
