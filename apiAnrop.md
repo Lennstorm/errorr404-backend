@@ -23,12 +23,16 @@ Below is the default user in the database. Login using email and phone number. U
 
 Send valid json data based on customerSchema in the body request. Below is the scheme from the model file.
 
-firstName: Joi.string().required(),
-lastName: Joi.string().required(),
-email: Joi.string().email().required(),
-password: Joi.string().min(6).required(),
-phoneNumber: Joi.string(),
-orderHistory: Joi.array().items(orderHistorySchema).optional()
+````json
+{
+    "firstName": "Joi.string().required()",
+    "lastName": "Joi.string().required()",
+    "email": "Joi.string().email().required()",
+    "password": "Joi.string().min(6).required()",
+    "phoneNumber": "Joi.string()",
+    "orderHistory": "Joi.array().items(orderHistorySchema).optional()"
+}
+`````
 
 **GET** all customers http://localhost:3000/api/customers
 **GET** customer _id http://localhost:3000/api/customers/:id
