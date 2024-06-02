@@ -1,6 +1,5 @@
 # API Documentation
 
-## Base URL http://localhost:3000/
 
 Routes starting with `:id` are protected. The `:id` parameter needs to be replaced by the user NeDB `_id`.
 
@@ -18,7 +17,7 @@ Default user in database. Login using email and phone number. Use `_id` value to
 ````
 
 
-### CUSTOMERS
+## CUSTOMERS
 
 **POST** new customer http://localhost:3000/api/customers
 
@@ -38,7 +37,7 @@ orderHistory: Joi.array().items(orderHistorySchema).optional()
 
 
 
-### LOGIN
+## LOGIN
 
 **POST** login user http://localhost:3000/api/login
 
@@ -56,7 +55,7 @@ Send valid json data in the request body. A user logs in by entering valid email
 
 
 
-### PRODUCTS (protected)
+## PRODUCTS (protected)
 
 **POST** new product http://localhost:3000/:customerID/products
 **GET** all products http://localhost:3000/:customerID/products
@@ -66,7 +65,7 @@ Send valid json data in the request body. A user logs in by entering valid email
 
 
 
-### CART (protected)
+## CART (protected)
 
 **GET** customer cart http://localhost:3000/:customerID/cart
 **POST** new product to customer cart http://localhost:3000/:customerID/cart/:productID
@@ -75,14 +74,14 @@ Send valid json data in the request body. A user logs in by entering valid email
 
 
 
-### ORDER (protected)
+## ORDER (protected)
 
 **POST** new order. This will empty the customer cart and send the cart items into the users unique order history object in the database. http://localhost:3000/:customerID/orders
 
 
 
 
-### ORDER HISTORY (protected)
+## ORDER HISTORY (protected)
 
 **POST** new order history http://localhost:3000/:customerID/api/order-history
 **GET** all order histories http://localhost:3000/:customerID/api/order-history
@@ -92,7 +91,7 @@ Send valid json data in the request body. A user logs in by entering valid email
 
 
 
-### ABOUT
+## ABOUT
 
 **GET** about information http://localhost:3000/about
 
