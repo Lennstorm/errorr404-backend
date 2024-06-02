@@ -34,9 +34,9 @@ Send valid json data based on customerSchema in the body request. Below is the s
 }
 `````
 
-**GET** all customers http://localhost:3000/api/customers
-**GET** customer _id http://localhost:3000/api/customers/:id
-**DELETE** customer by _id http://localhost:3000/api/customers/:id
+**GET** all customers http://localhost:3000/api/customers  
+**GET** customer _id http://localhost:3000/api/customers/:id  
+**DELETE** customer by _id http://localhost:3000/api/customers/:id  
 
 
 
@@ -61,41 +61,41 @@ Send valid json data in the request body. A user logs in by entering valid email
 
 ## PRODUCTS (protected)
 
-**POST** new product http://localhost:3000/:customerID/products
-**GET** all products http://localhost:3000/:customerID/products
-**PUT** product by _id http://localhost:3000/:customerID/products/:id
-**DELETE** product by _id http://localhost:3000/:customerID/products/:id
+**POST** new product http://localhost:3000/:customerID/products  
+**GET** all products http://localhost:3000/:customerID/products  
+**PUT** product by _id http://localhost:3000/:customerID/products/:id  
+**DELETE** product by _id http://localhost:3000/:customerID/products/:id  
 
 
 
 
 ## CART (protected)
 
-**GET** customer cart http://localhost:3000/:customerID/cart
-**POST** new product to customer cart http://localhost:3000/:customerID/cart/:productID
-**DELETE** product from customer cart http://localhost:3000/:customerID/cart/:productID
+**GET** customer cart http://localhost:3000/:customerID/cart  
+**POST** new product to customer cart http://localhost:3000/:customerID/cart/:productID  
+**DELETE** product from customer cart http://localhost:3000/:customerID/cart/:productID  
 
 
 
 
 ## ORDER (protected)
 
-**POST** new order. This will empty the customer cart and send the cart items into the users unique order history object in the database. http://localhost:3000/:customerID/orders
+**POST** new order. This will empty the customer cart and send the cart items into the users unique order history object in the database. http://localhost:3000/:customerID/orders  
 
 
 
 
 ## ORDER HISTORY (protected)
 
-**POST** new order history http://localhost:3000/:customerID/api/order-history
-**GET** all order histories http://localhost:3000/:customerID/api/order-history
-**GET** specific customer order history http://localhost:3000/:customerID/api/order-history/:orderHistoryID
-**DELETE** specific customer order history http://localhost:3000/:customerID/api/order-history/:orderHistoryID
+**POST** new order history http://localhost:3000/:customerID/api/order-history  
+**GET** all order histories http://localhost:3000/:customerID/api/order-history  
+**GET** specific customer order history http://localhost:3000/:customerID/api/order-history/:orderHistoryID  
+**DELETE** specific customer order history http://localhost:3000/:customerID/api/order-history/:orderHistoryID  
 
 
 
 
 ## ABOUT
 
-**GET** about information http://localhost:3000/about
+**GET** about information http://localhost:3000/about  
 
