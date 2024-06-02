@@ -1,5 +1,5 @@
 import Joi from "joi";
-import orderHistorySchema from "./orderHistorySchema.js";
+import orderHistorySchema from "./orderHistoryScheme.js";
 
 const customerSchema = Joi.object({
   firstName: Joi.string().required(),

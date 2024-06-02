@@ -11,6 +11,8 @@ import {
 
 const router = Router();
 
+// URL for CRUD operations: localhost:3000/api/customers
+
 // POST route for adding a new customer
 router.post("/", validateCustomer, createCustomerController);
 
