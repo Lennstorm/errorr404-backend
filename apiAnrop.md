@@ -21,7 +21,7 @@ Below is the default user in the database. Login using email and phone number. U
 
 **POST** new customer http://localhost:3000/api/customers
 
-Send valid json data based on customerSchema in the body request. Below is the scheme from the model file.
+Send valid json data based on customerSchema in the body request. Below is the scheme for the customer model file.
 
 ````json
 {
