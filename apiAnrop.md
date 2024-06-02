@@ -1,8 +1,6 @@
 # API Documentation
 
-## Base URL
-
-http://localhost:3000/
+## Base URL http://localhost:3000/
 
 Routes starting with `:id` are protected. The `:id` parameter needs to be replaced by the user NeDB `_id`.
 
