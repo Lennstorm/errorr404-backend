@@ -16,21 +16,22 @@ Default user in database. Login using email and phone number. Use `_id` value to
     "password": "password123",
     "phoneNumber": "+1234567890",
     "_id": "xbc9Nbod8wWdPzRd"
-}```
+}
+````
 
 
 ###CUSTOMERS
 
 POST new customer http://localhost:3000/api/customers
 
-    Send valid json data based on customerSchema in the body request. Below is the scheme from the model file.
+Send valid json data based on customerSchema in the body request. Below is the scheme from the model file.
 
-        firstName: Joi.string().required(),
-        lastName: Joi.string().required(),
-        email: Joi.string().email().required(),
-        password: Joi.string().min(6).required(),
-        phoneNumber: Joi.string(),
-        orderHistory: Joi.array().items(orderHistorySchema).optional()
+firstName: Joi.string().required(),
+lastName: Joi.string().required(),
+email: Joi.string().email().required(),
+password: Joi.string().min(6).required(),
+phoneNumber: Joi.string(),
+orderHistory: Joi.array().items(orderHistorySchema).optional()
 
 GET all customers http://localhost:3000/api/customers
 GET customer _id http://localhost:3000/api/customers/:id
@@ -43,13 +44,14 @@ DELETE customer by _id http://localhost:3000/api/customers/:id
 
 POST login user http://localhost:3000/api/login
 
-    Send valid json data in the request body. A user logs in by entering valid email and phone number values. Login controller checks if the entered data is correct.
+Send valid json data in the request body. A user logs in by entering valid email and phone number values. Login controller checks if the entered data is correct.
 
-        ```json
-        {
-            "email": "Joi.string().email().required()",
-            "phoneNumber": "Joi.string()"
-        }```
+````json
+{
+"email": "Joi.string().email().required()",
+"phoneNumber": "Joi.string()"
+}
+````
 
 
 
@@ -95,4 +97,4 @@ DELETE specific customer order history http://localhost:3000/:customerID/api/ord
 ABOUT
 
 GET about information http://localhost:3000/about
-````
+
