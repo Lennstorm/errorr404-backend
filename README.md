@@ -50,7 +50,7 @@ Send valid json data in the request body. A user logs in by entering valid email
 ````json
 {
 "email": "Joi.string().email().required()",
-"phoneNumber": "Joi.string()"
+"password": "Joi.string().min(6).required()"
 }
 ````
 
