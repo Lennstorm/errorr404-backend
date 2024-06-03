@@ -19,7 +19,10 @@ async function createOrUpdateOrderHistory(orderHistoryData) {
       return "Order history updated successfully";
     } else {
       const newOrderHistory = await orderHistoryDb.insert(orderHistoryData);
-      return newOrderHistory;
+      return {
+        message: "New order history created",
+        data: newOrderHistory, // Return the new order history data
+      };
     }
   } catch (error) {
     throw new Error("Failed to create or update order history");

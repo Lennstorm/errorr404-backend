@@ -2,8 +2,14 @@ import { createOrUpdateOrderHistory } from "./orderHistory.js";
 import { getCustomerById } from "./customers.js"; // Ensure this is correctly imported
 
 const createOrder = async (userId, cart) => {
-  // Accept cart as a parameter
   try {
+    if (cart.length === 0) {
+      return {
+        status: 400,
+        response: { error: "Cart is empty" },
+      };
+    }
+
     await getCustomerById(userId); // Check if the user exists
 
     const totalPrice = calculateTotalPrice(cart); // Calculate total price for the specific cart
@@ -20,9 +26,17 @@ const createOrder = async (userId, cart) => {
 
     const result = await createOrUpdateOrderHistory(orderHistoryData);
 
-    return result;
+    cart.length = 0;
+
+    return {
+      status: 201,
+      response: { message: result },
+    };
   } catch (error) {
-    throw new Error("Failed to place order: " + error.message);
+    return {
+      status: 500,
+      response: { error: "Failed to place order: " + error.message },
+    };
   }
 };
 
@@ -31,7 +45,7 @@ const getAllOrders = async (userId) => {
     const customer = await getCustomerById(userId); // Ensure user exists
     // Implement logic to fetch all orders for the specific user from order history
   } catch (error) {
-    throw new Error("Failed to fetch orders: " + error.message);
+    throw new Error("Failed to fetch orders: ");
   }
 };
 
