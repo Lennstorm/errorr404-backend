@@ -61,7 +61,7 @@ Send valid json data in the request body. A user logs in by entering valid email
 
 
 
-## PRODUCTS (protected)
+## PRODUCTS
 
 **POST** new product http://localhost:3000/products
 
