@@ -69,7 +69,7 @@ Send valid json data in the request body to create a new product products.db
   "id": "Joi.number().integer().required()",
   "title": "Joi.string().required()",
   "desc": "Joi.string().required()", 
-  "price": "Joi.number().precision(2).required()" // nummer med två decimaler
+  "price": "Joi.number().precision(2).required()"
 }
 ````
 
