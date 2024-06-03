@@ -65,7 +65,7 @@ Send valid json data in the request body. A user logs in by entering valid email
 
 Send valid json data in the request body to create a new product products.db
 ````json
-    	{
+{
   "id": "Joi.number().integer().required()",
   "title": "Joi.string().required()",
   "desc": "Joi.string().required()", 
