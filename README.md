@@ -35,7 +35,7 @@ Send valid json data based on customerSchema in the body request. Below is the s
 `````
 
 **GET** all customers http://localhost:3000/customers  
-**GET** customer _id http://localhost:3000/customers/:id  
+**GET** find specific customer using the customer _id as route parameter http://localhost:3000/customers/:id  
 **DELETE** customer by _id http://localhost:3000/customers/:id  
 
 
@@ -61,7 +61,18 @@ Send valid json data in the request body. A user logs in by entering valid email
 
 ## PRODUCTS (protected)
 
-**POST** new product http://localhost:3000/products  
+**POST** new product http://localhost:3000/products
+
+Send valid json data in the request body to create a new product products.db
+````json
+    	{
+  "id": "Joi.number().integer().required()",
+  "title": "Joi.string().required()",
+  "desc": "Joi.string().required()", 
+  "price": "Joi.number().precision(2).required()" // nummer med två decimaler
+}
+````
+
 **GET** all products http://localhost:3000/products  
 **PUT** product by _id http://localhost:3000/products/:id  
 **DELETE** product by _id http://localhost:3000/products/:id  
@@ -72,23 +83,23 @@ Send valid json data in the request body. A user logs in by entering valid email
 ## CART (protected)
 
 **GET** cart page http://localhost:3000/cart  
-**GET** customer cart http://localhost:3000/:customerID/cart  
-**POST** new product to customer cart http://localhost:3000/:customerID/cart/:productID  
-**DELETE** product from customer cart http://localhost:3000/:customerID/cart/:productID  
+**GET** customer cart using customer _id as route parameter http://localhost:3000/:customerID/cart  
+**POST** Add product to cart by using the product id as a route parameter. http://localhost:3000/:customerID/cart/:productID
+**DELETE** product from customer cart using customer _id and product id as route parameters http://localhost:3000/:customerID/cart/:productID  
 
 
 
 
 ## ORDER (protected)
 
-**POST** new order. This will empty the customer cart and send the cart items into the users unique order history object in the database. http://localhost:3000/:customerID/orders  
+**POST** new order. This will empty the customer cart and send the cart items into the customers unique order history object in the orderHistory.db http://localhost:3000/:customerID/orders
+
 
 
 
 
 ## ORDER HISTORY (protected)
 
-**POST** new order history http://localhost:3000/:customerID/order-history  
 **GET** all order histories http://localhost:3000/:customerID/order-history  
 **GET** specific customer order history http://localhost:3000/:customerID/order-history/:orderHistoryID  
 **DELETE** specific customer order history http://localhost:3000/:customerID/order-history/:orderHistoryID  
