@@ -61,16 +61,17 @@ Send valid json data in the request body. A user logs in by entering valid email
 
 ## PRODUCTS (protected)
 
-**POST** new product http://localhost:3000/:customerID/products  
-**GET** all products http://localhost:3000/:customerID/products  
-**PUT** product by _id http://localhost:3000/:customerID/products/:id  
-**DELETE** product by _id http://localhost:3000/:customerID/products/:id  
+**POST** new product http://localhost:3000/products  
+**GET** all products http://localhost:3000/products  
+**PUT** product by _id http://localhost:3000/products/:id  
+**DELETE** product by _id http://localhost:3000/products/:id  
 
 
 
 
 ## CART (protected)
 
+**GET** cart page http://localhost:3000/cart  
 **GET** customer cart http://localhost:3000/:customerID/cart  
 **POST** new product to customer cart http://localhost:3000/:customerID/cart/:productID  
 **DELETE** product from customer cart http://localhost:3000/:customerID/cart/:productID  
