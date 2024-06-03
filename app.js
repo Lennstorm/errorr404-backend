@@ -17,8 +17,8 @@ app.use(express.json());
 app.use(cors());
 
 //Routes
-app.use("/api/customers", customerRouter);
-app.use("/api/login", loginRouter);
+app.use("/customers", customerRouter);
+app.use("/login", loginRouter);
 app.use("/about", aboutRouter);
 app.use("/products", productRouter);
 app.use("/cart", cartRouter);
@@ -37,7 +37,7 @@ app.use("/:id", async (req, res, next) => {
 //Protected routes
 app.use("/:id/cart", cartRouter);
 app.use("/:id/orders", ordersRouter);
-app.use("/:id/api/order-history", orderHistoryRouter);
+app.use("/:id/order-history", orderHistoryRouter);
 
 // Initialize the database with default data if empty, then start the server
 const PORT = process.env.PORT || 3000;

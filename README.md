@@ -19,7 +19,7 @@ Below is the default user in the database. Login using email and phone number. U
 
 ## CUSTOMERS
 
-**POST** new customer http://localhost:3000/api/customers
+**POST** new customer http://localhost:3000/customers
 
 Send valid json data based on customerSchema in the body request. Below is the scheme for the customer model file.
 
@@ -34,16 +34,16 @@ Send valid json data based on customerSchema in the body request. Below is the s
 }
 `````
 
-**GET** all customers http://localhost:3000/api/customers  
-**GET** customer _id http://localhost:3000/api/customers/:id  
-**DELETE** customer by _id http://localhost:3000/api/customers/:id  
+**GET** all customers http://localhost:3000/customers  
+**GET** customer _id http://localhost:3000/customers/:id  
+**DELETE** customer by _id http://localhost:3000/customers/:id  
 
 
 
 
 ## LOGIN
 
-**POST** login user http://localhost:3000/api/login
+**POST** login user http://localhost:3000/login
 
 Send valid json data in the request body. A user logs in by entering valid email and phone number values. Login controller checks if the entered data is correct.
 
@@ -87,10 +87,10 @@ Send valid json data in the request body. A user logs in by entering valid email
 
 ## ORDER HISTORY (protected)
 
-**POST** new order history http://localhost:3000/:customerID/api/order-history  
-**GET** all order histories http://localhost:3000/:customerID/api/order-history  
-**GET** specific customer order history http://localhost:3000/:customerID/api/order-history/:orderHistoryID  
-**DELETE** specific customer order history http://localhost:3000/:customerID/api/order-history/:orderHistoryID  
+**POST** new order history http://localhost:3000/:customerID/order-history  
+**GET** all order histories http://localhost:3000/:customerID/order-history  
+**GET** specific customer order history http://localhost:3000/:customerID/order-history/:orderHistoryID  
+**DELETE** specific customer order history http://localhost:3000/:customerID/order-history/:orderHistoryID  
 
 
 
