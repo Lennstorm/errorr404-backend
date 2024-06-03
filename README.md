@@ -34,8 +34,10 @@ Send valid json data based on customerSchema in the body request. Below is the s
 }
 `````
 
-**GET** all customers http://localhost:3000/customers  
-**GET** find specific customer using the customer _id as route parameter http://localhost:3000/customers/:id  
+**GET** all customers http://localhost:3000/customers
+
+**GET** find specific customer using the customer _id as route parameter http://localhost:3000/customers/:id
+
 **DELETE** customer by _id http://localhost:3000/customers/:id  
 
 
@@ -74,7 +76,9 @@ Send valid json data in the request body to create a new product products.db
 ````
 
 **GET** all products http://localhost:3000/products  
+
 **PUT** product by _id http://localhost:3000/products/:id  
+
 **DELETE** product by _id http://localhost:3000/products/:id  
 
 
@@ -83,8 +87,11 @@ Send valid json data in the request body to create a new product products.db
 ## CART (protected)
 
 **GET** cart page http://localhost:3000/cart  
+
 **GET** customer cart using customer _id as route parameter http://localhost:3000/:customerID/cart  
+
 **POST** Add product to cart by using the product id as a route parameter. http://localhost:3000/:customerID/cart/:productID
+
 **DELETE** product from customer cart using customer _id and product id as route parameters http://localhost:3000/:customerID/cart/:productID  
 
 
@@ -101,7 +108,9 @@ Send valid json data in the request body to create a new product products.db
 ## ORDER HISTORY (protected)
 
 **GET** all order histories http://localhost:3000/:customerID/order-history  
+
 **GET** specific customer order history http://localhost:3000/:customerID/order-history/:orderHistoryID  
+
 **DELETE** specific customer order history http://localhost:3000/:customerID/order-history/:orderHistoryID  
 
 
