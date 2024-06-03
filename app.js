@@ -20,6 +20,8 @@ app.use(cors());
 app.use("/api/customers", customerRouter);
 app.use("/api/login", loginRouter);
 app.use("/about", aboutRouter);
+app.use("/products", productRouter);
+app.use("/cart", cartRouter);
 
 // Route middleware for protected routes
 app.use("/:id", async (req, res, next) => {
@@ -33,7 +35,6 @@ app.use("/:id", async (req, res, next) => {
 });
 
 //Protected routes
-app.use("/:id/products", productRouter);
 app.use("/:id/cart", cartRouter);
 app.use("/:id/orders", ordersRouter);
 app.use("/:id/api/order-history", orderHistoryRouter);

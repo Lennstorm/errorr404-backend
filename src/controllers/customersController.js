@@ -4,8 +4,6 @@ import {
   getCustomerById,
   updateCustomer,
   deleteCustomer,
-  findCustomerByEmail,
-  findCustomerByPhoneNumber,
 } from "../services/customers.js";
 
 // Controller function for creating a new customer
