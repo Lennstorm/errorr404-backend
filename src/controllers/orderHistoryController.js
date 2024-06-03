@@ -34,11 +34,23 @@ export const updateOrderHistory = async (req, res) => {
 export const getAllOrderHistoriesHandler = async (req, res) => {
   try {
     const orderHistories = await getAllOrderHistories();
+
+    if (orderHistories.length === 0) {
+      const error = {
+        status: 400,
+        message: "No order histories found",
+      };
+      return res.status(error.status).json(error);
+    }
+
     return res.status(200).json(orderHistories);
   } catch (error) {
-    return res
-      .status(500)
-      .json({ error: "An error occurred while fetching order histories" });
+    // If an error occurs during the process, construct and send the error response
+    const errorResponse = {
+      status: 500,
+      message: "Failed to fetch order histories",
+    };
+    return res.status(errorResponse.status).json(errorResponse);
   }
 };
 
