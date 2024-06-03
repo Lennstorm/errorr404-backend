@@ -9,6 +9,9 @@ import orderHistoryRouter from "./src/routes/orderHistory.js";
 import cors from "cors";
 import { getCustomerById } from "./src/services/customers.js";
 import { initializeDatabase } from "./src/services/product.js";
+import { logCartParam } from "./src/middleware/routeConsoleLogs.js";
+import { logOrderHistory } from "./src/middleware/routeConsoleLogs.js";
+import { logOrdersParam } from "./src/middleware/routeConsoleLogs.js";
 
 const app = express();
 
@@ -26,7 +29,7 @@ app.use("/cart", cartRouter);
 // Route middleware for protected routes
 app.use("/:id", async (req, res, next) => {
   try {
-    await getCustomerById(req.params.id); // Ensure this is correctly called
+    await getCustomerById(req.params.id);
     next();
   } catch (error) {
     // Return the error message from the service function
@@ -35,9 +38,9 @@ app.use("/:id", async (req, res, next) => {
 });
 
 //Protected routes
-app.use("/:id/cart", cartRouter);
-app.use("/:id/orders", ordersRouter);
-app.use("/:id/order-history", orderHistoryRouter);
+app.use("/:id/cart", logCartParam, cartRouter);
+app.use("/:id/orders", logOrdersParam, ordersRouter);
+app.use("/:id/order-history", logOrderHistory, orderHistoryRouter);
 
 // Initialize the database with default data if empty, then start the server
 const PORT = process.env.PORT || 3000;
