@@ -1,6 +1,7 @@
 // routes/customers.js
 import { Router } from "express";
 import { validateCustomer } from "../middleware/customersValidation.js";
+import { validateUpdateCustomer } from "../middleware/updateCustomerVal.js";
 import {
   createCustomerController,
   getAllCustomersController,
@@ -23,7 +24,7 @@ router.get("/", getAllCustomersController);
 router.get("/:id", getCustomerByIdController);
 
 // PUT route for updating a customer by ID
-router.put("/:id", validateCustomer, updateCustomerController);
+router.put("/:id", validateUpdateCustomer, updateCustomerController);
 
 // DELETE route for deleting a customer by ID
 router.delete("/:id", deleteCustomerController);

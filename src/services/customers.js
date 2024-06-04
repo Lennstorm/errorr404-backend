@@ -23,9 +23,12 @@ async function createCustomer(customerData) {
 async function getAllCustomers() {
   try {
     const customers = await database.find({});
+    if (customers.length === 0) {
+      throw new Error("No customers found");
+    }
     return customers;
   } catch (error) {
-    throw new Error("Failed to fetch customers");
+    throw Error(error.message);
   }
 }
 
@@ -38,7 +41,7 @@ async function getCustomerById(id) {
     }
     return customer;
   } catch (error) {
-    throw new Error("Failed to fetch customer");
+    throw new Error("Failed to fetch customer.");
   }
 }
 
@@ -52,7 +55,7 @@ async function updateCustomer(id, updatedCustomerData) {
     await database.update({ _id: id }, { $set: updatedCustomerData });
     return "Customer updated successfully";
   } catch (error) {
-    throw new Error("Failed to update customer");
+    throw Error(error.message);
   }
 }
 
@@ -65,7 +68,7 @@ async function deleteCustomer(id) {
     }
     return "Customer deleted successfully";
   } catch (error) {
-    throw new Error("Failed to delete customer");
+    throw Error(error.message);
   }
 }
 

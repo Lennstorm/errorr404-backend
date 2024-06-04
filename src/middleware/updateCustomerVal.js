@@ -4,10 +4,9 @@ import {
   findCustomerByPhoneNumber,
 } from "../services/customers.js";
 
-//Validation for creating a new costumer
-
-export async function validateCustomer(req, res, next) {
+export async function validateUpdateCustomer(req, res, next) {
   const customer = req.body;
+  const customerIdFromUrl = req.params.id; // Get the _id from the URL parameters
 
   // Validate the customer data against the schema
   const { error } = customerSchema.validate(customer);
@@ -20,17 +19,20 @@ export async function validateCustomer(req, res, next) {
     });
   }
 
-  // Check if email is already in use
+  // Check if email is already in use (excluding the current user)
   const existingEmail = await findCustomerByEmail(customer.email);
-  if (existingEmail) {
+  if (existingEmail && existingEmail._id.toString() !== customerIdFromUrl) {
     return res.status(400).json({ message: "Email already in use" });
   }
 
-  // Check if phone number is already in use
+  // Check if phone number is already in use (excluding the current user)
   const existingPhoneNumber = await findCustomerByPhoneNumber(
     customer.phoneNumber
   );
-  if (existingPhoneNumber) {
+  if (
+    existingPhoneNumber &&
+    existingPhoneNumber._id.toString() !== customerIdFromUrl
+  ) {
     return res.status(400).json({ message: "Phone number already in use" });
   }
 

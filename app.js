@@ -12,6 +12,7 @@ import { initializeDatabase } from "./src/services/product.js";
 import { logCartParam } from "./src/middleware/routeConsoleLogs.js";
 import { logOrderHistory } from "./src/middleware/routeConsoleLogs.js";
 import { logOrdersParam } from "./src/middleware/routeConsoleLogs.js";
+import protectedRoute from "./src/middleware/protectedRoutes.js";
 
 const app = express();
 
@@ -26,21 +27,15 @@ app.use("/about", aboutRouter);
 app.use("/products", productRouter);
 app.use("/cart", cartRouter);
 
-// Route middleware for protected routes
-app.use("/:id", async (req, res, next) => {
-  try {
-    await getCustomerById(req.params.id);
-    next();
-  } catch (error) {
-    // Return the error message from the service function
-    return res.status(404).json({ message: error.message });
-  }
-});
-
 //Protected routes
-app.use("/:id/cart", logCartParam, cartRouter);
-app.use("/:id/orders", logOrdersParam, ordersRouter);
-app.use("/:id/order-history", logOrderHistory, orderHistoryRouter);
+app.use("/:id/cart", logCartParam, cartRouter, protectedRoute);
+app.use("/:id/orders", logOrdersParam, ordersRouter, protectedRoute);
+app.use(
+  "/:id/order-history",
+  logOrderHistory,
+  orderHistoryRouter,
+  protectedRoute
+);
 
 // Initialize the database with default data if empty, then start the server
 const PORT = process.env.PORT || 3000;
