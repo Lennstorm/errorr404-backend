@@ -92,7 +92,6 @@ Use the _id value in the parameter to delete that product.
 
 **GET** specific customer order history http://localhost:3000/:customerID/order-history/:orderHistoryID
 
-**DELETE** specific customer order history http://localhost:3000/:customerID/order-history/:orderHistoryID
 
 ## ABOUT
 
