@@ -4,8 +4,15 @@ import productRouter from "./src/routes/products.js";
 import aboutRouter from "./src/routes/about.js";
 import cartRouter from "./src/routes/cart.js";
 import loginRouter from "./src/routes/login.js";
+import ordersRouter from "./src/routes/orders.js";
+import orderHistoryRouter from "./src/routes/orderHistory.js";
 import cors from "cors";
+import { getCustomerById } from "./src/services/customers.js";
 import { initializeDatabase } from "./src/services/product.js";
+import { logCartParam } from "./src/middleware/routeConsoleLogs.js";
+import { logOrderHistory } from "./src/middleware/routeConsoleLogs.js";
+import { logOrdersParam } from "./src/middleware/routeConsoleLogs.js";
+import protectedRoute from "./src/middleware/protectedRoutes.js";
 
 const app = express();
 
@@ -14,11 +21,21 @@ app.use(express.json());
 app.use(cors());
 
 //Routes
-app.use("/api/customers", customerRouter);
-app.use("/api/products", productRouter);
+app.use("/customers", customerRouter);
+app.use("/login", loginRouter);
 app.use("/about", aboutRouter);
+app.use("/products", productRouter);
 app.use("/cart", cartRouter);
-app.use("/api/login", loginRouter);
+
+//Protected routes
+app.use("/:id/cart", logCartParam, cartRouter, protectedRoute);
+app.use("/:id/orders", logOrdersParam, ordersRouter, protectedRoute);
+app.use(
+  "/:id/order-history",
+  logOrderHistory,
+  orderHistoryRouter,
+  protectedRoute
+);
 
 // Initialize the database with default data if empty, then start the server
 const PORT = process.env.PORT || 3000;

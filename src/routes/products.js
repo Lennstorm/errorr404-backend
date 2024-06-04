@@ -10,6 +10,8 @@ import {
 
 const router = Router();
 
+// URL for CRUD operations: localhost:3000/api/products
+
 // GET all menu items
 router.get("/", async (req, res) => {
   const products = await getAllProducts();
@@ -23,9 +25,9 @@ router.post("/", validateProduct, async (req, res) => {
   res.status(201).json(newProduct);
 });
 
-// GET specific menu item by ID
+// GET specific menu item by _id
 router.get("/:id", async (req, res) => {
-  const id = parseInt(req.params.id, 10);
+  const id = req.params.id;
   const product = await getProductById(id);
   if (product) {
     res.json(product);
@@ -34,19 +36,35 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// UPDATE menu item
+// UPDATE menu item by _id
 router.put("/:id", async (req, res) => {
-  const id = parseInt(req.params.id, 10);
+  const id = req.params.id;
   const updatedProduct = req.body;
-  await updateProduct(id, updatedProduct);
-  res.json({ message: "Menu item updated successfully" });
+  try {
+    await updateProduct(id, updatedProduct);
+    res.json({ message: "Menu item updated successfully" });
+  } catch (error) {
+    if (error.status === 404) {
+      res.status(404).json({ message: "Product not found" });
+    } else {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  }
 });
 
-// DELETE menu item
+// DELETE menu item by _id
 router.delete("/:id", async (req, res) => {
-  const id = parseInt(req.params.id, 10);
-  await deleteProduct(id);
-  res.json({ message: "Menu item deleted successfully" });
+  const id = req.params.id;
+  try {
+    await deleteProduct(id);
+    res.json({ message: "Menu item deleted successfully" });
+  } catch (error) {
+    if (error.status === 404) {
+      res.status(404).json({ message: "Product not found" });
+    } else {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  }
 });
 
 export default router;
