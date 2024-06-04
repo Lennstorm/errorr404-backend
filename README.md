@@ -52,7 +52,8 @@ Send valid json data in the request body. A user logs in by entering valid email
 
 ## PRODUCTS
 
-**POST** new product http://localhost:3000/products
+**POST** new product http://localhost:3000/products/:productID
+Use the _id value in the parameter to delete that product.
 
 Send valid json data in the request body to create a new product products.db
 
