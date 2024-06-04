@@ -22,9 +22,7 @@ router.get("/", (req, res, next) => {
   const cart = getCart(customerId);
 
   if (cart.length === 0) {
-    return res.status(404).json({
-      success: false,
-      status: 404,
+    return res.json({
       message: "Din varukorg är tom",
     });
   }
@@ -43,7 +41,7 @@ router.get("/", (req, res, next) => {
 
 router.post("/:productId", async (req, res, next) => {
   const customerId = req.params.id;
-  const productId = parseInt(req.params.productId, 10);
+  const productId = req.params.productId;
   try {
     const foundItem = await getProductById(productId);
 
@@ -76,9 +74,9 @@ router.post("/:productId", async (req, res, next) => {
 
 router.delete("/:productId", (req, res, next) => {
   const customerId = req.params.id;
-  const productId = parseInt(req.params.productId, 10);
+  const productId = req.params.productId;
   const cart = getCart(customerId);
-  const foundItemIndex = cart.findIndex((item) => item.id === productId);
+  const foundItemIndex = cart.findIndex((item) => item._id === productId);
 
   if (foundItemIndex === -1) {
     return res.status(404).json({
