@@ -1,8 +1,2 @@
-{"firstName":"Tesst","lastName":"Man","email":"testman@testmail.com","password":"Joi.string().min(6).required()","phoneNumber":"123456789","_id":"5SKK5OePj10oUFjO"}
-{"firstName":"Tesst","lastName":"Man","email":"testman@testmail.com","password":"Joi.string().min(6).required()","phoneNumber":"123456789","_id":"5SKK5OePj10oUFjO"}
-{"firstName":"Tesst","lastName":"Woman","email":"testman@testmail.com","password":"Joi.string().min(6).required()","phoneNumber":"123456789","_id":"5SKK5OePj10oUFjO"}
+{"firstName":"Test","lastName":"Man","email":"testman@testmail.com","password":"Joistring().min(6).required()","phoneNumber":"123456789","_id":"5SKK5OePj10oUFjO"}
 {"firstName":"test","lastName":"woman","email":"testwoman@testmail.com","password":"Joi.string().min(6).required()","phoneNumber":"12345678910","_id":"RcHJlOz6FvT58GeR"}
-{"firstName":"Test","lastName":"Man","email":"testman@testmail.com","password":"Joi.string().min(6).required()","phoneNumber":"123456789","_id":"5SKK5OePj10oUFjO"}
-{"firstName":"Test","lastName":"Man","email":"testman@testmail.com","password":"Joi.string().min(6).required()","phoneNumber":"123456789","_id":"5SKK5OePj10oUFjO"}
-{"firstName":"Test","lastName":"Man","email":"testman@testmail.com","password":"Joi.string().min(6).required()","phoneNumber":"123456789","_id":"5SKK5OePj10oUFjO"}
-{"firstName":"Test","lastName":"Man","email":"testman@testmail.com","password":"Joi.string().min(6).required()","phoneNumber":"123456789","_id":"5SKK5OePj10oUFjO"}

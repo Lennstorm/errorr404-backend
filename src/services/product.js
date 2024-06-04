@@ -64,7 +64,7 @@ async function getAllProducts() {
 // Get specific menu item
 async function getProductById(id) {
   try {
-    return await database.findOne({ id: id });
+    return await database.findOne({ _id: id });
   } catch (error) {
     console.error(error);
   }
@@ -73,23 +73,44 @@ async function getProductById(id) {
 // Update menu item
 async function updateProduct(id, updatedProduct) {
   try {
-    const product = await database.findOne({ id: id });
-    return await database.update(
+    const product = await database.findOne({ _id: id });
+
+    if (!product) {
+      const error = new Error("Product not found");
+      error.status = 404;
+      throw error;
+    }
+
+    const result = await database.update(
       { _id: product._id },
       { $set: updatedProduct }
     );
+
+    console.log(`${product.title} has been updated`);
+    return result;
   } catch (error) {
     console.error(error);
+    throw error; // Re-throw the error to be caught by the route handler
   }
 }
 
 // Delete menu item
 async function deleteProduct(id) {
   try {
-    const deletedProduct = await database.remove({ id: id });
+    const deletedProduct = await database.remove({ _id: id });
+
+    if (deletedProduct === 0) {
+      // Throw a 404 error if no document was deleted
+      const error = new Error("Product not found");
+      error.status = 404;
+      throw error;
+    }
+
+    console.log(id);
     console.log(deletedProduct);
   } catch (error) {
     console.error(error);
+    throw error; // Re-throw the error to be caught in the route handler
   }
 }
 
