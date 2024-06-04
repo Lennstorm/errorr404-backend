@@ -78,9 +78,9 @@ Use the _id value in the parameter to delete that product.
 
 **GET** customer cart using customer \_id as route parameter http://localhost:3000/:customerID/cart
 
-**POST** Add product to cart by using the product id as a route parameter. http://localhost:3000/:customerID/cart/:productID
+**POST** Add product to customer cart by using the product _id as a route parameter. http://localhost:3000/:customerID/cart/:productID
 
-**DELETE** product from customer cart using customer \_id and product id as route parameters http://localhost:3000/:customerID/cart/:productID
+**DELETE** product from customer cart using customer \_id and product _id as route parameters http://localhost:3000/:customerID/cart/:productID
 
 ## ORDER (protected)
 
