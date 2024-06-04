@@ -28,7 +28,6 @@ Send valid json data based on customerSchema in the body request. Below is the s
   "email": "Joi.string().email().required()",
   "password": "Joi.string().min(6).required()",
   "phoneNumber": "Joi.string()",
-  "orderHistory": "Joi.array().items(orderHistorySchema).optional()"
 }
 ```
 
