@@ -10,16 +10,16 @@ export async function loginController(req, res) {
 
     if (!customer) {
       // If the email does not exist, return an error
-      return res.status(400).json({ message: "Invalid email or password" });
+      return res.status(400).json({ message: "Invalid email" });
     }
 
-    // For simplicity, let's assume the password is stored in plaintext
+    // Check password
     if (customer.password === password) {
       // If the password matches, return a success message
       return res.status(200).json({ message: "Login successful" });
     } else {
       // If the password does not match, return an error
-      return res.status(400).json({ message: "Invalid email or password" });
+      return res.status(400).json({ message: "Invalid password" });
     }
   } catch (error) {
     // If an error occurs, return a server error response
