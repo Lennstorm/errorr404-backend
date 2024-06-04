@@ -8,6 +8,7 @@ const customerSchema = Joi.object({
   password: Joi.string().min(6).required(),
   phoneNumber: Joi.string(),
   orderHistory: Joi.array().items(orderHistorySchema).optional(),
+  _id: Joi.string().optional(),
 });
 
 export default customerSchema;
