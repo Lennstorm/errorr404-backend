@@ -9,7 +9,7 @@ const orderSchema = Joi.object({
     price: Joi.number().precision(2).required(),
   }).required(),
   orderTime: Joi.date().required(),
-  deliveryTime: Joi.date().required()
+  deliveryTime: Joi.date().required(),
 });
 
 export default orderSchema;
