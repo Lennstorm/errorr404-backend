@@ -6,7 +6,13 @@ const carts = {}; // Object to store carts for each customer
 
 // Calculate total price of items in the cart
 const calculateTotalPrice = (cart) => {
-  return cart.reduce((total, item) => total + item.price, 0);
+  let total = cart.reduce((sum, item) => sum + item.price, 0);
+  if (cart.length >= 5) {
+    total *= 0.8; 
+  } else if (cart.length >= 3) {
+    total *= 0.9; 
+  }
+  return total;
 };
 
 // Get the cart for a specific customer
