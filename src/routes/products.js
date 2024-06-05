@@ -7,13 +7,14 @@ import {
   updateProduct,
   deleteProduct,
 } from "../services/product.js";
+import { bodyContentBlocker } from "../middleware/bodyContentBlocker.js";
 
 const router = Router();
 
 // URL for CRUD operations: localhost:3000/api/products
 
 // GET all menu items
-router.get("/", async (req, res) => {
+router.get("/", bodyContentBlocker, async (req, res) => {
   const products = await getAllProducts();
   res.json(products);
 });
@@ -26,7 +27,7 @@ router.post("/", validateProduct, async (req, res) => {
 });
 
 // GET specific menu item by _id
-router.get("/:id", async (req, res) => {
+router.get("/:id", bodyContentBlocker, async (req, res) => {
   const id = req.params.id;
   const product = await getProductById(id);
   if (product) {
@@ -53,7 +54,7 @@ router.put("/:id", validateProduct, async (req, res) => {
 });
 
 // DELETE menu item by _id
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", bodyContentBlocker, async (req, res) => {
   const id = req.params.id;
   try {
     await deleteProduct(id);
