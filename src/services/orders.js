@@ -13,7 +13,6 @@ const createOrder = async (userId, cart, totalPrice) => {
 
     await getCustomerById(userId); // Check if the user exists
 
-    const totalPrice = calculateTotalPrice(cart); // Calculate total price for the specific cart
     const orderTime = new Date();
     const deliveryTime = new Date(orderTime.getTime() + 20 * 60000); //20 minutes from placed order
 
