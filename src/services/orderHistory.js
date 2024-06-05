@@ -70,4 +70,5 @@ export {
   getAllOrderHistories,
   getOrderHistoryById,
   deleteOrderHistory,
+  orderHistoryDb,
 };

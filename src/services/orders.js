@@ -68,7 +68,7 @@ const getOrderById = async (userId, orderId) => {
   
   const fetchOrderByIdFromDatabase = async (userId, orderId) => {
     try {
-      const order = await orderHistoryDB.findOne({ userId: userId, orderId: parseInt(orderId, 10) });
+      const order = await orderHistoryDb.findOne({ userId: userId, orderId: parseInt(orderId, 10) });
       return order;
     } catch (error) {
       throw new Error("Failed to fetch order: " + error.message);

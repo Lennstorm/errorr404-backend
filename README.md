@@ -86,6 +86,9 @@ Send valid json data in the request body to create a new product products.db
 
 **POST** new order. This will empty the customer cart and send the cart items into the customers unique order history object in the orderHistory.db http://localhost:3000/:customerID/orders
 
+**GET** specific order http://localhost:3000/:customerID/orders/:orderId
+
+
 ## ORDER HISTORY (protected)
 
 **GET** all order histories http://localhost:3000/:customerID/order-history
@@ -98,7 +101,6 @@ Send valid json data in the request body to create a new product products.db
 
 **GET** about information http://localhost:3000/about
 
-## DELIVERY TIME 
 
-**GET** delivery time http://localhost:3000/:customerID/orders/:orderId/delivery-time
+
 
