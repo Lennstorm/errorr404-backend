@@ -15,7 +15,7 @@ const createOrder = async (userId, cart) => {
 
     const totalPrice = calculateTotalPrice(cart); // Calculate total price for the specific cart
     const orderTime = new Date();
-    const deliveryTime = new Date(orderTime.getTime() + 20 * 60000) //20 minutes from placed order
+    const deliveryTime = new Date(orderTime.getTime() + 20 * 60000); //20 minutes from placed order
 
     const newOrder = {
       orderId: Math.floor(Math.random() * 1000000), //generate random orderId
@@ -23,7 +23,7 @@ const createOrder = async (userId, cart) => {
       items: [...cart],
       totalPrice: totalPrice,
       orderTime: orderTime,
-      deliveryTime: deliveryTime
+      deliveryTime: deliveryTime,
     };
 
     const orderHistoryData = {
@@ -59,29 +59,36 @@ const getAllOrders = async (userId) => {
   } catch (error) {
     return {
       status: 500,
-      response: { error: "Failed to fetch orders: " + error.message }
+      response: { error: "Failed to fetch orders: " + error.message },
     };
   }
 };
 
 const getOrderById = async (userId, orderId) => {
-  
   const fetchOrderByIdFromDatabase = async (userId, orderId) => {
     try {
-      const order = await orderHistoryDb.findOne({ userId: userId, orderId: parseInt(orderId, 10) });
+      // Find the order history document for the user
+      const orderHistory = await orderHistoryDb.findOne({ userId: userId });
+      if (!orderHistory) {
+        return null;
+      }
+
+      // Find the specific order within the orders array
+      const order = orderHistory.orders.find(
+        (order) => order.orderId === parseInt(orderId, 10)
+      );
       return order;
     } catch (error) {
       throw new Error("Failed to fetch order: " + error.message);
     }
   };
-  
-  
+
   try {
     await getCustomerById(userId); // Ensure user exists
 
     // Fetch the order from the order history database
     const order = await fetchOrderByIdFromDatabase(userId, orderId);
-    
+
     if (!order) {
       return {
         status: 404,
@@ -99,7 +106,6 @@ const getOrderById = async (userId, orderId) => {
     };
   }
 };
-
 
 const calculateTotalPrice = (cart) => {
   return cart.reduce((total, item) => total + item.price * item.quantity, 0);
