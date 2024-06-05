@@ -25,9 +25,7 @@ export async function getAllCustomersController(req, res) {
     const customers = await getAllCustomers();
     res.json(customers);
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: error.message });
+    res.status(404).json({ error: error.message });
   }
 }
 
@@ -53,7 +51,7 @@ export async function updateCustomerController(req, res) {
     res.json({ message: "Customer updated successfully" });
   } catch (error) {
     res
-      .status(500)
+      .status(404)
       .json({ message: "Internal server error", error: error.message });
   }
 }
@@ -65,8 +63,8 @@ export async function deleteCustomerController(req, res) {
     await deleteCustomer(customerId);
     res.json({ message: "Customer deleted successfully" });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: error.message });
+    res.status(404).json({
+      error: error.message,
+    });
   }
 }

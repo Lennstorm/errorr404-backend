@@ -1,2 +1,2 @@
-{"firstName":"Isak","lastName":"Sköld","email":"isakskold@mail.com","password":"mittlösenord","phoneNumber":"19191919191","_id":"tzvun65Q6w3qQz9E"}
-{"firstName":"John","lastName":"Doe","email":"john.doe@example.com","password":"password123","phoneNumber":"+1234567890","address":{"street":"123 Main St","city":"Anytown","state":"CA","postalCode":"12345","country":"USA"},"_id":"xbc9Nbod8wWdPzRd"}
+{"firstName":"Test","lastName":"Man","email":"testman@testmail.com","password":"Joistring().min(6).required()","phoneNumber":"123456789","_id":"5SKK5OePj10oUFjO"}
+{"firstName":"test","lastName":"woman","email":"testwoman@testmail.com","password":"Joi.string().min(6).required()","phoneNumber":"12345678910","_id":"RcHJlOz6FvT58GeR"}

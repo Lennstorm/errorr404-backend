@@ -28,7 +28,6 @@ Send valid json data based on customerSchema in the body request. Below is the s
   "email": "Joi.string().email().required()",
   "password": "Joi.string().min(6).required()",
   "phoneNumber": "Joi.string()",
-  "orderHistory": "Joi.array().items(orderHistorySchema).optional()"
 }
 ```
 
@@ -53,7 +52,7 @@ Send valid json data in the request body. A user logs in by entering valid email
 
 ## PRODUCTS
 
-**POST** new product http://localhost:3000/products
+**POST** new product http://localhost:3000/products/
 
 Send valid json data in the request body to create a new product products.db
 
@@ -70,7 +69,8 @@ Send valid json data in the request body to create a new product products.db
 
 **PUT** product by \_id http://localhost:3000/products/:id
 
-**DELETE** product by \_id http://localhost:3000/products/:id
+**DELETE** product by \_id http://localhost:3000/products/:id  
+Use the _id value in the parameter to delete that product.
 
 ## CART (protected)
 
@@ -78,9 +78,9 @@ Send valid json data in the request body to create a new product products.db
 
 **GET** customer cart using customer \_id as route parameter http://localhost:3000/:customerID/cart
 
-**POST** Add product to cart by using the product id as a route parameter. http://localhost:3000/:customerID/cart/:productID
+**POST** Add product to customer cart by using the product _id as a route parameter. http://localhost:3000/:customerID/cart/:productID
 
-**DELETE** product from customer cart using customer \_id and product id as route parameters http://localhost:3000/:customerID/cart/:productID
+**DELETE** product from customer cart using customer \_id and product _id as route parameters http://localhost:3000/:customerID/cart/:productID
 
 ## ORDER (protected)
 
@@ -95,7 +95,6 @@ Send valid json data in the request body to create a new product products.db
 
 **GET** specific customer order history http://localhost:3000/:customerID/order-history/:orderHistoryID
 
-**DELETE** specific customer order history http://localhost:3000/:customerID/order-history/:orderHistoryID
 
 ## ABOUT
 
