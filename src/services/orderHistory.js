@@ -11,27 +11,25 @@ async function createOrUpdateOrderHistory(orderHistoryData) {
     const existingOrderHistory = await orderHistoryDb.findOne({
       userId: orderHistoryData.userId,
     });
+
     if (existingOrderHistory) {
-      // Push the new order into the existing orders array
+      // Update the existing order history
       existingOrderHistory.orders.push(orderHistoryData.orders[0]);
       existingOrderHistory.totalPrice += orderHistoryData.totalPrice;
+      existingOrderHistory.firstName = orderHistoryData.firstName; // Ensure firstName is updated
 
       await orderHistoryDb.update(
         { userId: orderHistoryData.userId },
-        {
-          $set: {
-            orders: existingOrderHistory.orders,
-            totalPrice: existingOrderHistory.totalPrice,
-          },
-        }
+        existingOrderHistory
       );
-      return "Order history updated successfully";
     } else {
-      const newOrderHistory = await orderHistoryDb.insert(orderHistoryData);
-      return {
-        message: "New order history created",
-        data: newOrderHistory, // Return the new order history data
-      };
+      // Insert new order history
+      await orderHistoryDb.insert({
+        userId: orderHistoryData.userId,
+        firstName: orderHistoryData.firstName,
+        totalPrice: orderHistoryData.totalPrice,
+        orders: orderHistoryData.orders,
+      });
     }
   } catch (error) {
     throw new Error("Failed to create or update order history");

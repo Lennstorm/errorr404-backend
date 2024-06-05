@@ -11,24 +11,24 @@ const createOrder = async (userId, cart, totalPrice) => {
       };
     }
 
-    await getCustomerById(userId); // Check if the user exists
+    const customer = await getCustomerById(userId); // Check if the user exists
 
     const prelTime = new Date();
     const prelDelTime = new Date(prelTime.getTime() + 20 * 60000); // 20 minutes from placed order
-    
+
     function formatDate(date) {
-        // Get the components of the date
-        const year = date.getUTCFullYear();
-        const month = String(date.getUTCMonth() + 1).padStart(2, '0');
-        const day = String(date.getUTCDate()).padStart(2, '0');
-        const hours = String(date.getUTCHours()).padStart(2, '0');
-        const minutes = String(date.getUTCMinutes()).padStart(2, '0');
-        const seconds = String(date.getUTCSeconds()).padStart(2, '0');
-    
-        // Format the date as desired
-        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+      // Get the components of the date
+      const year = date.getUTCFullYear();
+      const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+      const day = String(date.getUTCDate()).padStart(2, "0");
+      const hours = String(date.getUTCHours()).padStart(2, "0");
+      const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+      const seconds = String(date.getUTCSeconds()).padStart(2, "0");
+
+      // Format the date as desired
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     }
-    
+
     const orderTime = formatDate(prelTime);
     const deliveryTime = formatDate(prelDelTime);
 
@@ -43,8 +43,9 @@ const createOrder = async (userId, cart, totalPrice) => {
 
     const orderHistoryData = {
       userId,
-      orders: [newOrder],
+      firstName: customer.firstName,
       totalPrice: totalPrice,
+      orders: [newOrder],
     };
 
     const result = await createOrUpdateOrderHistory(orderHistoryData);
@@ -53,7 +54,7 @@ const createOrder = async (userId, cart, totalPrice) => {
 
     return {
       status: 201,
-      response: { message: result },
+      response: { message: "Order has been sent", orderId: newOrder.orderId },
     };
   } catch (error) {
     return {

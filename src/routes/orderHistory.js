@@ -1,4 +1,5 @@
 import express from "express";
+import { bodyContentBlocker } from "../middleware/bodyContentBlocker.js";
 import {
   getOrderHistory,
   getAllOrderHistoriesHandler,
@@ -10,12 +11,12 @@ const router = express.Router();
 // URL for CRUD operations: localhost:3000/api/order-history
 
 // GET route for fetching all order histories
-router.get("/", getAllOrderHistoriesHandler);
+router.get("/", bodyContentBlocker, getAllOrderHistoriesHandler);
 
 // GET route for fetching an order history by NeDB _id
-router.get("/:id", getOrderHistory);
+router.get("/:id", bodyContentBlocker, getOrderHistory);
 
 // DELETE route for deleting an order history by NeDB _id
-router.delete("/:id", deleteOrderHistoryHandler);
+router.delete("/:id", bodyContentBlocker, deleteOrderHistoryHandler);
 
 export default router;
