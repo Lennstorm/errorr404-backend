@@ -9,6 +9,8 @@ import {
 export async function validateCustomer(req, res, next) {
   const customer = req.body;
 
+  const customerIdFromUrl = req.params.id; // Get the _id from the URL parameters
+
   // Validate the customer data against the schema
   const { error } = customerSchema.validate(customer);
 
@@ -22,7 +24,7 @@ export async function validateCustomer(req, res, next) {
 
   // Check if email is already in use
   const existingEmail = await findCustomerByEmail(customer.email);
-  if (existingEmail) {
+  if (existingEmail && existingEmail._id.toString() !== customerIdFromUrl) {
     return res.status(400).json({ message: "Email already in use" });
   }
 
@@ -30,7 +32,10 @@ export async function validateCustomer(req, res, next) {
   const existingPhoneNumber = await findCustomerByPhoneNumber(
     customer.phoneNumber
   );
-  if (existingPhoneNumber) {
+  if (
+    existingPhoneNumber &&
+    existingPhoneNumber._id.toString() !== customerIdFromUrl
+  ) {
     return res.status(400).json({ message: "Phone number already in use" });
   }
 

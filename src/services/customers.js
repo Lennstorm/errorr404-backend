@@ -13,7 +13,8 @@ async function createCustomer(customerData) {
 
   try {
     const newCustomer = await database.insert(customerData);
-    return newCustomer;
+    const message = `Customer Created. Welcome ${newCustomer.firstName}`;
+    return { message, newCustomer };
   } catch (error) {
     throw new Error("Failed to create customer");
   }

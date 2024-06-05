@@ -60,8 +60,11 @@ export async function updateCustomerController(req, res) {
 export async function deleteCustomerController(req, res) {
   try {
     const customerId = req.params.id;
+    const customer = await getCustomerById(customerId);
     await deleteCustomer(customerId);
-    res.json({ message: "Customer deleted successfully" });
+    res.status(200).json({
+      message: `Customer deleted successfully. Bye ${customer.firstName}`,
+    });
   } catch (error) {
     res.status(404).json({
       error: error.message,
