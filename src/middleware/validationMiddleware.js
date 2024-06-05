@@ -2,10 +2,9 @@
 
 import productSchema from "../models/productSchema.js";
 
-//Validate product data
+// Validate product data
 export function validateProduct(req, res, next) {
-  const product = req.body;
-  const { error } = productSchema.validate(product);
+  const { error } = productSchema.validate(req.body, { abortEarly: false });
 
   if (!error) {
     next();

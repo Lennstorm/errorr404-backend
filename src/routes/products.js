@@ -37,7 +37,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // UPDATE menu item by _id
-router.put("/:id", async (req, res) => {
+router.put("/:id", validateProduct, async (req, res) => {
   const id = req.params.id;
   const updatedProduct = req.body;
   try {
