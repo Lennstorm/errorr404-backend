@@ -86,6 +86,9 @@ Use the _id value in the parameter to delete that product.
 
 **POST** new order. This will empty the customer cart and send the cart items into the customers unique order history object in the orderHistory.db http://localhost:3000/:customerID/orders
 
+**GET** specific order http://localhost:3000/:customerID/orders/:orderId
+
+
 ## ORDER HISTORY (protected)
 
 **GET** all order histories http://localhost:3000/:customerID/order-history
@@ -96,3 +99,7 @@ Use the _id value in the parameter to delete that product.
 ## ABOUT
 
 **GET** about information http://localhost:3000/about
+
+
+
+

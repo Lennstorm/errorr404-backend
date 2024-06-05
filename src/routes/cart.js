@@ -8,9 +8,9 @@ const carts = {}; // Object to store carts for each customer
 const calculateTotalPrice = (cart) => {
   let total = cart.reduce((sum, item) => sum + item.price, 0);
   if (cart.length >= 5) {
-    total *= 0.8; 
+    total *= 0.8;
   } else if (cart.length >= 3) {
-    total *= 0.9; 
+    total *= 0.9;
   }
   return total;
 };
@@ -34,6 +34,7 @@ router.get("/", (req, res, next) => {
   }
 
   const totalPrice = calculateTotalPrice(cart);
+  console.log(totalPrice);
 
   res.status(200).json({
     success: true,
@@ -108,4 +109,4 @@ router.delete("/:productId", (req, res, next) => {
 });
 
 export default router;
-export { getCart }; // Ensure getCart is exported
+export { getCart, calculateTotalPrice }; // Ensure getCart is exported
