@@ -28,6 +28,7 @@ router.get("/", (req, res, next) => {
   }
 
   const totalPrice = calculateTotalPrice(cart);
+  console.log(totalPrice);
 
   res.status(200).json({
     success: true,
@@ -102,4 +103,4 @@ router.delete("/:productId", (req, res, next) => {
 });
 
 export default router;
-export { getCart }; // Ensure getCart is exported
+export { getCart, calculateTotalPrice }; // Ensure getCart is exported

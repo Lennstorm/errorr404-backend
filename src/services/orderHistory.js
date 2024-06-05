@@ -12,9 +12,18 @@ async function createOrUpdateOrderHistory(orderHistoryData) {
       userId: orderHistoryData.userId,
     });
     if (existingOrderHistory) {
+      // Push the new order into the existing orders array
+      existingOrderHistory.orders.push(orderHistoryData.orders[0]);
+      existingOrderHistory.totalPrice += orderHistoryData.totalPrice;
+
       await orderHistoryDb.update(
         { userId: orderHistoryData.userId },
-        { $set: orderHistoryData }
+        {
+          $set: {
+            orders: existingOrderHistory.orders,
+            totalPrice: existingOrderHistory.totalPrice,
+          },
+        }
       );
       return "Order history updated successfully";
     } else {
