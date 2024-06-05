@@ -1,17 +1,22 @@
 import express from "express";
-import customerRouter from "./src/routes/customers.js";
-import productRouter from "./src/routes/products.js";
-import aboutRouter from "./src/routes/about.js";
+import cors from "cors";
+
+import { initializeDatabase } from "./src/services/product.js";
+
 import cartRouter from "./src/routes/cart.js";
+import aboutRouter from "./src/routes/about.js";
 import loginRouter from "./src/routes/login.js";
 import ordersRouter from "./src/routes/orders.js";
 import orderHistoryRouter from "./src/routes/orderHistory.js";
-import cors from "cors";
-import { getCustomerById } from "./src/services/customers.js";
-import { initializeDatabase } from "./src/services/product.js";
-import { logCartParam } from "./src/middleware/routeConsoleLogs.js";
-import { logOrderHistory } from "./src/middleware/routeConsoleLogs.js";
-import { logOrdersParam } from "./src/middleware/routeConsoleLogs.js";
+import customerRouter from "./src/routes/customers.js";
+import productRouter from "./src/routes/products.js";
+
+import {
+  logCartParam,
+  logOrderHistory,
+  logOrdersParam,
+} from "./src/middleware/routeConsoleLogs.js";
+
 import protectedRoute from "./src/middleware/protectedRoutes.js";
 
 const app = express();
