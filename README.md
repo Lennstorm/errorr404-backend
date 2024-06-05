@@ -97,3 +97,8 @@ Send valid json data in the request body to create a new product products.db
 ## ABOUT
 
 **GET** about information http://localhost:3000/about
+
+## DELIVERY TIME 
+
+**GET** delivery time http://localhost:3000/:customerID/orders/:orderId/delivery-time
+
