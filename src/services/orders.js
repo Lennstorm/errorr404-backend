@@ -2,7 +2,7 @@ import { createOrUpdateOrderHistory } from "./orderHistory.js";
 import { getCustomerById } from "./customers.js"; // Ensure this is correctly imported
 import { orderHistoryDb } from "./orderHistory.js";
 
-const createOrder = async (userId, cart) => {
+const createOrder = async (userId, cart, totalPrice) => {
   try {
     if (cart.length === 0) {
       return {
@@ -34,7 +34,7 @@ const createOrder = async (userId, cart) => {
 
     const result = await createOrUpdateOrderHistory(orderHistoryData);
 
-    cart.length = 0;
+    cart.length = 0; // Clear the cart
 
     return {
       status: 201,
