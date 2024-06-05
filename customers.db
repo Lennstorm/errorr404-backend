@@ -1,2 +1,7 @@
 {"firstName":"Test","lastName":"Man","email":"testman@testmail.com","password":"Joistring().min(6).required()","phoneNumber":"123456789","_id":"5SKK5OePj10oUFjO"}
 {"firstName":"test","lastName":"woman","email":"testwoman@testmail.com","password":"Joi.string().min(6).required()","phoneNumber":"12345678910","_id":"RcHJlOz6FvT58GeR"}
+{"firstName":"John1","lastName":"Doe","email":"Johndoe1@yahoo.com","password":"johnspassword","phoneNumber":"1485671039","_id":"lrLWAVfPyorkmYef"}
+{"$$deleted":true,"_id":"lrLWAVfPyorkmYef"}
+{"firstName":"John1","lastName":"Doe","email":"Johndoe1@yahoo.com","password":"johnspassword","phoneNumber":"1485671039","_id":"k5UTg6bV8s0PmSie"}
+{"firstName":"John","lastName":"Doe","email":"Johndoe1@yahoo.com","password":"johnspassword","phoneNumber":"1485671039","_id":"k5UTg6bV8s0PmSie"}
+{"firstName":"John","lastName":"Doe","email":"Johndoe@yahoo.com","password":"johnspassword","phoneNumber":"1485671039","_id":"k5UTg6bV8s0PmSie"}

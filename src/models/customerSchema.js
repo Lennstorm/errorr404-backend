@@ -1,5 +1,4 @@
 import Joi from "joi";
-import orderHistorySchema from "./orderHistoryScheme.js";
 
 const customerSchema = Joi.object({
   firstName: Joi.string().required(),
@@ -7,8 +6,6 @@ const customerSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required(),
   phoneNumber: Joi.string(),
-  orderHistory: Joi.array().items(orderHistorySchema).optional(),
-  _id: Joi.string().optional(),
-});
+}).options({ allowUnknown: false }); // Disallow unknown properties
 
 export default customerSchema;
