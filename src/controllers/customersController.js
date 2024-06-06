@@ -5,6 +5,7 @@ import {
   updateCustomer,
   deleteCustomer,
 } from "../services/customers.js";
+import { findLoggedInCustomer } from "../utils/findLoggedCustomer.js";
 
 // Controller function for creating a new customer
 export async function createCustomerController(req, res) {
@@ -32,7 +33,8 @@ export async function getAllCustomersController(req, res) {
 // Controller function for fetching a customer by ID
 export async function getCustomerByIdController(req, res) {
   try {
-    const customerId = req.params.id;
+    const loggedInCustomer = await findLoggedInCustomer();
+    const customerId = loggedInCustomer._id;
     const customer = await getCustomerById(customerId);
     res.json(customer);
   } catch (error) {
@@ -45,7 +47,8 @@ export async function getCustomerByIdController(req, res) {
 // Controller function for updating a customer by ID
 export async function updateCustomerController(req, res) {
   try {
-    const customerId = req.params.id;
+    const loggedInCustomer = await findLoggedInCustomer();
+    const customerId = loggedInCustomer._id;
     const updatedCustomerData = req.body;
     await updateCustomer(customerId, updatedCustomerData);
     res.json({ message: "Customer updated successfully" });
@@ -59,7 +62,8 @@ export async function updateCustomerController(req, res) {
 // Controller function for deleting a customer by ID
 export async function deleteCustomerController(req, res) {
   try {
-    const customerId = req.params.id;
+    const loggedInCustomer = await findLoggedInCustomer();
+    const customerId = loggedInCustomer._id;
     const customer = await getCustomerById(customerId);
     await deleteCustomer(customerId);
     res.status(200).json({

@@ -1,13 +1,15 @@
 import express from "express";
-import { createOrder, getAllOrders, getOrderById } from "../services/orders.js";
+import { createOrder, getOrderById } from "../services/orders.js";
 import { getCart } from "../routes/cart.js"; // Import the getCart function
 import { calculateTotalPrice } from "../routes/cart.js";
 import { bodyContentBlocker } from "../middleware/bodyContentBlocker.js";
+import { findLoggedInCustomer } from "../utils/findLoggedCustomer.js";
 
 const router = express.Router({ mergeParams: true });
 
 router.post("/", bodyContentBlocker, async (req, res) => {
-  const userId = req.params.id;
+  const loggedInCustomer = await findLoggedInCustomer();
+  const userId = loggedInCustomer._id;
   const cart = getCart(userId); // Fetch the user's specific cart
 
   const totalPrice = calculateTotalPrice(cart);
@@ -18,14 +20,9 @@ router.post("/", bodyContentBlocker, async (req, res) => {
   res.status(result.status).json(result.response);
 });
 
-router.get("/", bodyContentBlocker, async (req, res) => {
-  const userId = req.params.id;
-  const result = await getAllOrders(userId);
-  res.status(result.status).json(result.response);
-});
-
 router.get("/:orderId", bodyContentBlocker, async (req, res) => {
-  const userId = req.params.id;
+  const loggedInCustomer = await findLoggedInCustomer();
+  const userId = loggedInCustomer._id;
   const orderId = req.params.orderId;
   const result = await getOrderById(userId, orderId);
   res.status(result.status).json(result.response);

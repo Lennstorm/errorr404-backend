@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { getProductById } from "../services/product.js";
 import { bodyContentBlocker } from "../middleware/bodyContentBlocker.js";
+import { findLoggedInCustomer } from "../utils/findLoggedCustomer.js";
 
 const router = Router({ mergeParams: true });
 const carts = {}; // Object to store carts for each customer
@@ -24,8 +25,9 @@ const getCart = (customerId) => {
   return carts[customerId];
 };
 
-router.get("/", bodyContentBlocker, (req, res, next) => {
-  const customerId = req.params.id;
+router.get("/", bodyContentBlocker, async (req, res, next) => {
+  const loggedInCustomer = await findLoggedInCustomer();
+  const customerId = loggedInCustomer._id;
   const cart = getCart(customerId);
 
   if (cart.length === 0) {
@@ -48,7 +50,8 @@ router.get("/", bodyContentBlocker, (req, res, next) => {
 });
 
 router.post("/:productId", bodyContentBlocker, async (req, res, next) => {
-  const customerId = req.params.id;
+  const loggedInCustomer = await findLoggedInCustomer();
+  const customerId = loggedInCustomer._id;
   const productId = req.params.productId;
   try {
     const foundItem = await getProductById(productId);
@@ -80,8 +83,9 @@ router.post("/:productId", bodyContentBlocker, async (req, res, next) => {
   }
 });
 
-router.delete("/:productId", bodyContentBlocker, (req, res, next) => {
-  const customerId = req.params.id;
+router.delete("/:productId", bodyContentBlocker, async (req, res, next) => {
+  const loggedInCustomer = await findLoggedInCustomer();
+  const customerId = loggedInCustomer._id;
   const productId = req.params.productId;
   const cart = getCart(customerId);
   const foundItemIndex = cart.findIndex((item) => item._id === productId);
