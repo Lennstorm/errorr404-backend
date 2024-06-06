@@ -1,58 +1,54 @@
 # API Documentation
 
-Routes starting with `:id` are protected. The `:id` parameter needs to be replaced by the user NeDB `_id`.
+When starting the server with no db files, the products database will autofill. The database for customers will insert a guest user thats logged in by default.
 
-Below is the default user in the database. Login using email and phone number. Use `_id` value to access protected routes.
+The guest user is limited to some operations to limit potential bugs. The Guest cannot log itself out, update or delete itself.
 
-```json
-{
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "john.doe@example.com",
-  "password": "password123",
-  "phoneNumber": "+1234567890",
-  "_id": "xbc9Nbod8wWdPzRd"
-}
-```
+You can create a new customer and login on that account to access more API requests.
+
 
 ## CUSTOMERS
 
 **POST** new customer http://localhost:3000/customers
 
-Send valid json data based on customerSchema in the body request. Below is the scheme for the customer model file.
+You can copy and paste the json below to create a new customer. Change whatever you like and see what works what doesn't.
 
 ```json
 {
-  "firstName": "Joi.string().required()",
-  "lastName": "Joi.string().required()",
-  "email": "Joi.string().email().required()",
-  "password": "Joi.string().min(6).required()",
-  "phoneNumber": "Joi.string()",
+    "firstName": "Test",
+		"lastName": "Tester",
+		"email": "testman@testmail.com",
+		"password": "thisisatest",
+		"phoneNumber": "101010010011"
 }
 ```
 
 **GET** all customers http://localhost:3000/customers
 
-**GET** find specific customer using the customer \_id as route parameter http://localhost:3000/customers/:id
+**GET** Profile page for logged in customer. http://localhost:3000/customers/profile  
 
-**DELETE** customer by \_id http://localhost:3000/customers/:id
+**PUT** Update logged in customer information. Guests can't update the guest account http://localhost:3000/customers
+
+**DELETE** Delete logged in customer. Guests can't delete the guest account http://localhost:3000/customers
 
 ## LOGIN
 
 **POST** login user http://localhost:3000/login
 
-Send valid json data in the request body. A user logs in by entering valid email and phone number values. Login controller checks if the entered data is correct.
+Send valid json data in the request body. A user logs in by entering valid email and phone number values. Login controller checks if the entered data is correct. Below is the test users email and password in json.
 
 ```json
 {
-  "email": "Joi.string().email().required()",
-  "password": "Joi.string().min(6).required()"
+    "email": "testman@testmail.com",
+		"password": "thisisatest"
 }
 ```
 
 ## PRODUCTS
 
-**POST** new product http://localhost:3000/products/
+**POST** new product http://localhost:3000/products
+
+Anyone can add products to the database, admin benefits is not implemented.
 
 Send valid json data in the request body to create a new product products.db
 
@@ -67,33 +63,32 @@ Send valid json data in the request body to create a new product products.db
 
 **GET** all products http://localhost:3000/products
 
-**PUT** product by \_id http://localhost:3000/products/:id
+**PUT** update product with product \_id http://localhost:3000/products/:id
 
 **DELETE** product by \_id http://localhost:3000/products/:id  
 Use the _id value in the parameter to delete that product.
 
-## CART (protected)
+## CART
 
-**GET** cart page. Not protected http://localhost:3000/cart
+**GET** cart http://localhost:3000/cart
 
-**GET** customer cart using customer \_id as route parameter http://localhost:3000/:customerID/cart
+**POST** Add product to logged in customer cart http://localhost:3000/cart/:productId
 
-**POST** Add product to customer cart by using the product _id as a route parameter. http://localhost:3000/:customerID/cart/:productID
+**DELETE** product from customer cart using product _id as route parameter http://localhost:3000/cart/:productID
 
-**DELETE** product from customer cart using customer \_id and product _id as route parameters http://localhost:3000/:customerID/cart/:productID
+## ORDER
 
-## ORDER (protected)
+**POST** new order. This will empty the customer cart and send the cart items into the customers unique order history object in the orderHistory.db http://localhost:3000/orders
 
-**POST** new order. This will empty the customer cart and send the cart items into the customers unique order history object in the orderHistory.db http://localhost:3000/:customerID/orders
+**GET** specific order to see delivery time and other info. http://localhost:3000/orders/:orderId
+Use the order ID provided in the response from the POST operation.
 
-**GET** specific order http://localhost:3000/:customerID/orders/:orderId
 
+## ORDER HISTORY 
 
-## ORDER HISTORY (protected)
+**GET** all order histories http://localhost:3000/order-history/all
 
-**GET** all order histories http://localhost:3000/:customerID/order-history
-
-**GET** specific customer order history http://localhost:3000/:customerID/order-history/:orderHistoryID
+**GET** specific customer order history http://localhost:3000/order-history
 
 
 ## ABOUT
