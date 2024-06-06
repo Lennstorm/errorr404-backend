@@ -15,11 +15,11 @@ You can copy and paste the json below to create a new customer. Change whatever 
 
 ```json
 {
-    "firstName": "Test",
-		"lastName": "Tester",
-		"email": "testman@testmail.com",
-		"password": "thisisatest",
-		"phoneNumber": "101010010011"
+	"firstName": "Test",
+	"lastName": "Tester",
+	"email": "testman@testmail.com",
+	"password": "thisisatest",
+	"phoneNumber": "101010010011"
 }
 ```
 
