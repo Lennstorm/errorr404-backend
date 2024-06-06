@@ -1,3 +1,1 @@
-{"firstName":"Test","lastName":"Man","email":"testman@testmail.com","password":"thisisatest","phoneNumber":"101010010011","loggedIn":true,"_id":"DpNydLp67umDKWee"}
-{"firstName":"Isak","lastName":"Sköld","email":"isakskold@yeahboooiii.com","password":"hemligtsomfan","phoneNumber":"123456789","loggedIn":false,"_id":"eZXTql9eINMCcs9l"}
-{"firstName":"Guest","loggedIn":false,"_id":"guestintest"}
+{"firstName":"Guest","loggedIn":true,"_id":"guestintest"}
