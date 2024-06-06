@@ -2,17 +2,34 @@ import nedb from "nedb-promises";
 import customerSchema from "../models/customerSchema.js"; // Import the Joi schema for customer validation
 
 const database = new nedb({ filename: "customers.db", autoload: true });
+const defaultGuest = {
+  firstName: "Guest",
+  loggedIn: true,
+  _id: "guestintest",
+};
+
+// Initialize database with default guest
+export async function initializeCustomerDatabase() {
+  try {
+    // Check if there are any existing customers
+    const existingCustomers = await database.find({});
+    if (existingCustomers.length === 0) {
+      // If no existing customers, insert default guest
+      await database.insert(defaultGuest);
+    }
+  } catch (error) {
+    console.error(`Error initializing database: ${error.message}`);
+    throw new Error("Failed to initialize database");
+  }
+}
 
 // Function to create a new customer
 async function createCustomer(customerData) {
-  // Validate the customer data against the schema
-  const { error } = customerSchema.validate(customerData);
-  if (error) {
-    throw new Error(error.details.map((detail) => detail.message).join(", "));
-  }
-
   try {
-    const newCustomer = await database.insert(customerData);
+    // Adding the loggedIn property to customerData
+    const customerDataWithLoggedIn = { ...customerData, loggedIn: false };
+
+    const newCustomer = await database.insert(customerDataWithLoggedIn);
     const message = `Customer Created. Welcome ${newCustomer.firstName}`;
     return { message, newCustomer };
   } catch (error) {
@@ -101,4 +118,5 @@ export {
   deleteCustomer,
   findCustomerByEmail,
   findCustomerByPhoneNumber,
+  database,
 };

@@ -40,6 +40,9 @@ async function createOrUpdateOrderHistory(orderHistoryData) {
 async function getAllOrderHistories() {
   try {
     const orderHistories = await orderHistoryDb.find({});
+    if (orderHistories.length === 0) {
+      throw new Error("No order histories found");
+    }
     return orderHistories;
   } catch (error) {
     throw new Error("Failed to fetch order histories");
@@ -49,7 +52,7 @@ async function getAllOrderHistories() {
 // Function to get order history by NeDB _id
 async function getOrderHistoryById(id) {
   try {
-    const orderHistory = await orderHistoryDb.findOne({ _id: id });
+    const orderHistory = await orderHistoryDb.findOne({ userId: id });
     if (!orderHistory) {
       throw new Error("Order history not found");
     }
@@ -59,23 +62,9 @@ async function getOrderHistoryById(id) {
   }
 }
 
-// Function to delete order history by NeDB _id
-async function deleteOrderHistory(id) {
-  try {
-    const numRemoved = await orderHistoryDb.remove({ _id: id });
-    if (numRemoved === 0) {
-      throw new Error("Order history not found");
-    }
-    return "Order history deleted successfully";
-  } catch (error) {
-    throw new Error("Failed to delete order history");
-  }
-}
-
 export {
   createOrUpdateOrderHistory,
   getAllOrderHistories,
   getOrderHistoryById,
-  deleteOrderHistory,
   orderHistoryDb,
 };

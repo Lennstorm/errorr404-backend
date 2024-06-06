@@ -54,28 +54,16 @@ const createOrder = async (userId, cart, totalPrice) => {
 
     return {
       status: 201,
-      response: { message: "Order has been sent", orderId: newOrder.orderId },
+      response: {
+        message:
+          "Order has been sent. Enter your order ID to see delivery time",
+        orderId: newOrder.orderId,
+      },
     };
   } catch (error) {
     return {
       status: 500,
       response: { error: "Failed to place order: " + error.message },
-    };
-  }
-};
-
-const getAllOrders = async (userId) => {
-  try {
-    await getCustomerById(userId); // Ensure user exists
-    const userOrders = await fetchUserOrders(userId); // logic to fetch all orders for specific user from order history
-    return {
-      status: 200,
-      response: userOrders,
-    };
-  } catch (error) {
-    return {
-      status: 500,
-      response: { error: "Failed to fetch orders: " + error.message },
     };
   }
 };
@@ -127,4 +115,4 @@ const calculateTotalPrice = (cart) => {
   return cart.reduce((total, item) => total + item.price * item.quantity, 0);
 };
 
-export { createOrder, getAllOrders, getOrderById };
+export { createOrder, getOrderById };

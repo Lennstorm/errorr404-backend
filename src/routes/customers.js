@@ -21,12 +21,12 @@ router.post("/", validateCustomer, createCustomerController);
 router.get("/", bodyContentBlocker, getAllCustomersController);
 
 // GET route for fetching a customer by ID
-router.get("/:id", bodyContentBlocker, getCustomerByIdController);
+router.get("/profile", bodyContentBlocker, getCustomerByIdController);
 
 // PUT route for updating a customer by ID
-router.put("/:id", validateCustomer, updateCustomerController);
+router.put("/", validateCustomer, updateCustomerController);
 
 // DELETE route for deleting a customer by ID
-router.delete("/:id", bodyContentBlocker, deleteCustomerController);
+router.delete("/", bodyContentBlocker, deleteCustomerController);
 
 export default router;
