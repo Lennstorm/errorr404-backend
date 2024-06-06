@@ -1,3 +1,2 @@
-{"firstName":"Test","lastName":"Man","email":"testman@testmail.com","password":"thisisatest","phoneNumber":"101010010011","loggedIn":true,"_id":"Rl7EZRbeK2KraQgK"}
-{"firstName":"Guest","loggedIn":false,"_id":"guestintest"}
-{"firstName":"Test","lastName":"Tester","email":"testman@testmail.com","password":"thisisatest","phoneNumber":"101010010011","loggedIn":true,"_id":"Rl7EZRbeK2KraQgK"}
+{"firstName":"Test","lastName":"Tester","email":"testman@testmail.com","password":"thisisatest","phoneNumber":"101010010011","loggedIn":false,"_id":"gnjkaqRfRBVaTdWd"}
+{"firstName":"Guest","loggedIn":true,"_id":"guestintest"}
