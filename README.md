@@ -39,8 +39,8 @@ Send valid json data in the request body. A user logs in by entering valid email
 
 ```json
 {
-    "email": "testman@testmail.com",
-		"password": "thisisatest"
+	"email": "testman@testmail.com",
+	"password": "thisisatest"
 }
 ```
 
