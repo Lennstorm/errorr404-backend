@@ -11,7 +11,7 @@ You can create a new customer and login on that account to access more API reque
 
 **POST** new customer http://localhost:3000/customers
 
-You can copy and paste the json below to create a new customer. Change whatever you like and see what works what doesn't.
+You can copy and paste the json below to create a new customer. Change whatever you like and see what works and what doesn't.
 
 ```json
 {
