@@ -50,7 +50,7 @@ Send valid json data in the request body. A user logs in by entering valid email
 
 Anyone can add products to the database, admin benefits is not implemented.
 
-Send valid json data in the request body to create a new product products.db
+Send valid json data in the request body to create a new product 
 
 ```json
 {
