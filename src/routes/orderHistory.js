@@ -4,6 +4,7 @@ import {
   getOrderHistory,
   getAllOrderHistoriesHandler,
 } from "../controllers/orderHistoryController.js";
+import { preventGuest } from "../middleware/preventGuest.js";
 
 const router = express.Router();
 
@@ -13,6 +14,6 @@ const router = express.Router();
 router.get("/all", bodyContentBlocker, getAllOrderHistoriesHandler);
 
 // GET route for fetching an order history
-router.get("/", bodyContentBlocker, getOrderHistory);
+router.get("/", preventGuest, bodyContentBlocker, getOrderHistory);
 
 export default router;

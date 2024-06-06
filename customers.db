@@ -1,2 +1,4 @@
 {"firstName":"Test","lastName":"Tester","email":"testman@testmail.com","password":"thisisatest","phoneNumber":"101010010011","loggedIn":false,"_id":"gnjkaqRfRBVaTdWd"}
 {"firstName":"Guest","loggedIn":true,"_id":"guestintest"}
+{"firstName":"Guest","loggedIn":false,"_id":"guestintest"}
+{"firstName":"Test","lastName":"Tester","email":"testman@testmail.com","password":"thisisatest","phoneNumber":"101010010011","loggedIn":true,"_id":"gnjkaqRfRBVaTdWd"}

@@ -9,7 +9,7 @@ import {
   updateCustomerController,
   deleteCustomerController,
 } from "../controllers/customersController.js";
-import { preventGuestUpdate } from "../middleware/preventGuestUpdate.js";
+import { preventGuest } from "../middleware/preventGuest.js";
 
 const router = Router();
 
@@ -25,9 +25,9 @@ router.get("/", bodyContentBlocker, getAllCustomersController);
 router.get("/profile", bodyContentBlocker, getCustomerByIdController);
 
 // PUT route for updating a customer
-router.put("/", preventGuestUpdate, validateCustomer, updateCustomerController);
+router.put("/", preventGuest, validateCustomer, updateCustomerController);
 
 // DELETE route for deleting a customer
-router.delete("/", bodyContentBlocker, deleteCustomerController);
+router.delete("/", preventGuest, bodyContentBlocker, deleteCustomerController);
 
 export default router;
