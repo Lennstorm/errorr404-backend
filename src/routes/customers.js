@@ -20,13 +20,13 @@ router.post("/", validateCustomer, createCustomerController);
 // GET route for fetching all customers
 router.get("/", bodyContentBlocker, getAllCustomersController);
 
-// GET route for fetching a customer by ID
+// GET route for fetching a customer
 router.get("/profile", bodyContentBlocker, getCustomerByIdController);
 
-// PUT route for updating a customer by ID
+// PUT route for updating a customer
 router.put("/", validateCustomer, updateCustomerController);
 
-// DELETE route for deleting a customer by ID
+// DELETE route for deleting a customer
 router.delete("/", bodyContentBlocker, deleteCustomerController);
 
 export default router;
