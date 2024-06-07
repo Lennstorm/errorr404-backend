@@ -4,6 +4,7 @@ import { bodyContentBlocker } from "../middleware/bodyContentBlocker.js";
 
 const router = Router();
 
+//GET about page
 router.get("/", bodyContentBlocker, (req, res) => {
   res.json(aboutInfo);
 });

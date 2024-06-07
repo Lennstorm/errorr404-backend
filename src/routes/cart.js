@@ -17,7 +17,7 @@ const calculateTotalPrice = (cart) => {
   return total;
 };
 
-// Get the cart for a specific customer
+// Find or create cart
 const getCart = (customerId) => {
   if (!carts[customerId]) {
     carts[customerId] = [];
@@ -25,6 +25,7 @@ const getCart = (customerId) => {
   return carts[customerId];
 };
 
+// GET cart
 router.get("/", bodyContentBlocker, async (req, res, next) => {
   const loggedInCustomer = await findLoggedInCustomer();
   const customerId = loggedInCustomer._id;
@@ -49,6 +50,7 @@ router.get("/", bodyContentBlocker, async (req, res, next) => {
   });
 });
 
+//POST add product to cart
 router.post("/:productId", bodyContentBlocker, async (req, res, next) => {
   const loggedInCustomer = await findLoggedInCustomer();
   const customerId = loggedInCustomer._id;
@@ -83,6 +85,7 @@ router.post("/:productId", bodyContentBlocker, async (req, res, next) => {
   }
 });
 
+//DELETE delete product from cart
 router.delete("/:productId", bodyContentBlocker, async (req, res, next) => {
   const loggedInCustomer = await findLoggedInCustomer();
   const customerId = loggedInCustomer._id;

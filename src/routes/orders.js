@@ -7,6 +7,7 @@ import { findLoggedInCustomer } from "../utils/findLoggedCustomer.js";
 
 const router = express.Router({ mergeParams: true });
 
+//Place order
 router.post("/", bodyContentBlocker, async (req, res) => {
   const loggedInCustomer = await findLoggedInCustomer();
   const userId = loggedInCustomer._id;
@@ -20,6 +21,7 @@ router.post("/", bodyContentBlocker, async (req, res) => {
   res.status(result.status).json(result.response);
 });
 
+//See specific order
 router.get("/:orderId", bodyContentBlocker, async (req, res) => {
   const loggedInCustomer = await findLoggedInCustomer();
   const userId = loggedInCustomer._id;

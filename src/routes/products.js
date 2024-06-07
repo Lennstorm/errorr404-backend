@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { validateProduct } from "../middleware/productValidation.js"; // Import the validation middleware
+//import { validateProduct } from "../middleware/productValidation.js"; // Import the validation middleware
 import {
-  createProduct,
+  // createProduct,
   getAllProducts,
   getProductById,
-  updateProduct,
-  deleteProduct,
+  // updateProduct,
+  // deleteProduct,
 } from "../services/product.js";
 import { bodyContentBlocker } from "../middleware/bodyContentBlocker.js";
 
@@ -19,12 +19,12 @@ router.get("/", bodyContentBlocker, async (req, res) => {
   res.json(products);
 });
 
-// POST new menu item
+/* // POST new menu item
 router.post("/", validateProduct, async (req, res) => {
   const newProduct = req.body;
   await createProduct(newProduct);
   res.status(201).json(newProduct);
-});
+}); */
 
 // GET specific menu item by _id
 router.get("/:id", bodyContentBlocker, async (req, res) => {
@@ -37,7 +37,7 @@ router.get("/:id", bodyContentBlocker, async (req, res) => {
   }
 });
 
-// UPDATE menu item by _id
+/* // UPDATE menu item by _id
 router.put("/:id", validateProduct, async (req, res) => {
   const id = req.params.id;
   const updatedProduct = req.body;
@@ -51,9 +51,9 @@ router.put("/:id", validateProduct, async (req, res) => {
       res.status(500).json({ message: "Internal server error" });
     }
   }
-});
+}); */
 
-// DELETE menu item by _id
+/* // DELETE menu item by _id
 router.delete("/:id", bodyContentBlocker, async (req, res) => {
   const id = req.params.id;
   try {
@@ -66,6 +66,6 @@ router.delete("/:id", bodyContentBlocker, async (req, res) => {
       res.status(500).json({ message: "Internal server error" });
     }
   }
-});
+}); */
 
 export default router;

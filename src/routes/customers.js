@@ -4,7 +4,7 @@ import { validateCustomer } from "../middleware/customersValidation.js";
 import { bodyContentBlocker } from "../middleware/bodyContentBlocker.js";
 import {
   createCustomerController,
-  getAllCustomersController,
+  //getAllCustomersController,
   getCustomerByIdController,
   updateCustomerController,
   deleteCustomerController,
@@ -18,13 +18,14 @@ const router = Router();
 // POST route for adding a new customer
 router.post("/", validateCustomer, createCustomerController);
 
-// GET route for fetching all customers
+/* // GET route for fetching all customers
 router.get("/", bodyContentBlocker, getAllCustomersController);
+ */
 
-// GET route for fetching a customer
+// GET route for customer profile
 router.get("/profile", bodyContentBlocker, getCustomerByIdController);
 
-// PUT route for updating a customer
+// PUT route for updating customer info
 router.put("/", preventGuest, validateCustomer, updateCustomerController);
 
 // DELETE route for deleting a customer
