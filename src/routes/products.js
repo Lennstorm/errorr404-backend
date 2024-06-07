@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { validateProduct } from "../middleware/validationMiddleware.js"; // Import the validation middleware
+import { validateProduct } from "../middleware/productValidation.js"; // Import the validation middleware
 import {
   createProduct,
   getAllProducts,
