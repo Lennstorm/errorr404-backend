@@ -25,7 +25,19 @@ You can copy and paste the json below to create a new customer. Change whatever 
 
 **GET** Profile page for logged in customer. http://localhost:3000/customers/profile  
 
-**PUT** Update logged in customer information. Guests can't update the guest account http://localhost:3000/customers
+**PUT** Update logged in customer information. Guests can't update the guest account. http://localhost:3000/customers
+
+Copy paste this json into the request body to update user
+
+```json
+{
+	"firstName": "TestUpdated",
+	"lastName": "TesterUpdated",
+	"email": "testmanUpdated@testmail.com",
+	"password": "thisisatest",
+	"phoneNumber": "000111000"
+}
+```
 
 **DELETE** Delete logged in customer. Guests can't delete the guest account http://localhost:3000/customers
 
