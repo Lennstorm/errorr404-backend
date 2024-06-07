@@ -1,22 +1,9 @@
-import {
-  loginCustomer,
-  updateCustomerLoggedInStatus,
-} from "../services/login.js";
-import { getAllCustomers } from "../services/customers.js";
+import { loginCustomer } from "../services/login.js";
 
 // Controller function for user login
 export async function loginController(req, res) {
   try {
     const { email, password } = req.body;
-
-    // Check if another customer is logged in
-    const customers = await getAllCustomers();
-    const loggedInCustomer = customers.find((customer) => customer.loggedIn);
-
-    // If another customer is logged in, set their loggedIn status to false
-    if (loggedInCustomer) {
-      await updateCustomerLoggedInStatus(loggedInCustomer._id, false);
-    }
 
     // Log in the new customer
     const { message, customer } = await loginCustomer(email, password);

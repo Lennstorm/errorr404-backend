@@ -1,4 +1,5 @@
-import { database, getCustomerById } from "./customers.js";
+import { getCustomerById } from "./customers.js";
+import { updateCustomerLoggedInStatus } from "../utils/updateLoggedInStatus.js";
 
 // Function to handle user logout
 export async function logoutCustomer(customerId) {
@@ -28,8 +29,4 @@ export async function logoutCustomer(customerId) {
   await updateCustomerLoggedInStatus("guestintest", true);
 
   return { message: "Logout successful" };
-}
-
-async function updateCustomerLoggedInStatus(customerId, status) {
-  await database.update({ _id: customerId }, { $set: { loggedIn: status } });
 }

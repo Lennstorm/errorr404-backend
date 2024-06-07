@@ -1,5 +1,5 @@
 import nedb from "nedb-promises";
-import customerSchema from "../models/customerSchema.js"; // Import the Joi schema for customer validation
+import { updateCustomerLoggedInStatus } from "../utils/updateLoggedInStatus.js";
 
 const database = new nedb({ filename: "customers.db", autoload: true });
 const defaultGuest = {
@@ -84,6 +84,10 @@ async function deleteCustomer(id) {
     if (numRemoved === 0) {
       throw new Error("Customer not found");
     }
+
+    // Automatically log in the guest user
+    await updateCustomerLoggedInStatus("guestintest", true);
+
     return "Customer deleted successfully";
   } catch (error) {
     throw Error(error.message);

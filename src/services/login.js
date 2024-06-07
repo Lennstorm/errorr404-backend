@@ -1,13 +1,5 @@
-import { database, findCustomerByEmail } from "./customers.js";
-
-// Function to update the customer's loggedIn status
-export async function updateCustomerLoggedInStatus(customerId, status) {
-  // Update the customer's loggedIn status in the database
-  await database.update({ _id: customerId }, { $set: { loggedIn: status } });
-
-  // Return the updated customer object
-  return await database.findOne({ _id: customerId });
-}
+import { findCustomerByEmail, getAllCustomers } from "./customers.js";
+import { updateCustomerLoggedInStatus } from "../utils/updateLoggedInStatus.js";
 
 // Function to handle user login
 export async function loginCustomer(email, password) {
@@ -20,6 +12,14 @@ export async function loginCustomer(email, password) {
 
   // Check if the password matches
   if (customer.password === password) {
+    // Check if another customer is logged in
+    const customers = await getAllCustomers();
+    const loggedInCustomer = customers.find((customer) => customer.loggedIn);
+
+    // If another customer is logged in, set their loggedIn status to false
+    if (loggedInCustomer) {
+      await updateCustomerLoggedInStatus(loggedInCustomer._id, false);
+    }
     // Update the loggedIn status to true and get the updated customer
     const updatedCustomer = await updateCustomerLoggedInStatus(
       customer._id,
