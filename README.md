@@ -23,11 +23,21 @@ You can copy and paste the json below to create a new customer. Change whatever 
 }
 ```
 
-**GET** all customers http://localhost:3000/customers
-
 **GET** Profile page for logged in customer. http://localhost:3000/customers/profile  
 
-**PUT** Update logged in customer information. Guests can't update the guest account http://localhost:3000/customers
+**PUT** Update logged in customer information. Guests can't update the guest account. http://localhost:3000/customers
+
+Copy paste this json into the request body to update user
+
+```json
+{
+	"firstName": "TestUpdated",
+	"lastName": "TesterUpdated",
+	"email": "testmanUpdated@testmail.com",
+	"password": "thisisatest",
+	"phoneNumber": "000111000"
+}
+```
 
 **DELETE** Delete logged in customer. Guests can't delete the guest account http://localhost:3000/customers
 
@@ -35,7 +45,7 @@ You can copy and paste the json below to create a new customer. Change whatever 
 
 **POST** login user http://localhost:3000/login
 
-Send valid json data in the request body. A user logs in by entering valid email and phone number values. Login controller checks if the entered data is correct. Below is the test users email and password in json.
+Send valid json data in the request body. A user logs in by entering valid email and phone number values. Below is the test users email and password in json.
 
 ```json
 {
@@ -44,35 +54,19 @@ Send valid json data in the request body. A user logs in by entering valid email
 }
 ```
 
+## LOGOUT
+
+**POST** logout user http://localhost:3000/logout
+
 ## PRODUCTS
 
-**POST** new product http://localhost:3000/products
-
-Anyone can add products to the database, admin benefits is not implemented.
-
-Send valid json data in the request body to create a new product 
-
-```json
-{
-  "id": "Joi.number().integer().required()",
-  "title": "Joi.string().required()",
-  "desc": "Joi.string().required()",
-  "price": "Joi.number().precision(2).required()"
-}
-```
-
 **GET** all products http://localhost:3000/products
-
-**PUT** update product with product \_id http://localhost:3000/products/:id
-
-**DELETE** product by \_id http://localhost:3000/products/:id  
-Use the _id value in the parameter to delete that product.
 
 ## CART
 
 **GET** cart http://localhost:3000/cart
 
-**POST** Add product to logged in customer cart http://localhost:3000/cart/:productId
+**POST** Add product to logged in customer cart using product _id as route parameter http://localhost:3000/cart/:productId
 
 **DELETE** product from customer cart using product _id as route parameter http://localhost:3000/cart/:productID
 
@@ -85,8 +79,6 @@ Use the order ID provided in the response from the POST operation.
 
 
 ## ORDER HISTORY 
-
-**GET** all order histories http://localhost:3000/order-history/all
 
 **GET** specific customer order history http://localhost:3000/order-history
 
