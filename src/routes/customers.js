@@ -28,7 +28,7 @@ router.get("/profile", bodyContentBlocker, getCustomerByIdController);
 // PUT route for updating customer info
 router.put("/", preventGuest, validateCustomer, updateCustomerController);
 
-// DELETE route for deleting a customer
+// DELETE route for deleting customer
 router.delete("/", preventGuest, bodyContentBlocker, deleteCustomerController);
 
 export default router;
