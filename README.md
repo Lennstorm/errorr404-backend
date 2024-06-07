@@ -45,7 +45,7 @@ Copy paste this json into the request body to update user
 
 **POST** login user http://localhost:3000/login
 
-Send valid json data in the request body. A user logs in by entering valid email and phone number values. Login controller checks if the entered data is correct. Below is the test users email and password in json.
+Send valid json data in the request body. A user logs in by entering valid email and phone number values. Below is the test users email and password in json.
 
 ```json
 {
