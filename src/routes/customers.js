@@ -4,12 +4,13 @@ import { validateCustomer } from "../middleware/customersValidation.js";
 import { bodyContentBlocker } from "../middleware/bodyContentBlocker.js";
 import {
   createCustomerController,
-  //getAllCustomersController,
+  getAllCustomersController,
   getCustomerByIdController,
   updateCustomerController,
   deleteCustomerController,
 } from "../controllers/customersController.js";
 import { preventGuest } from "../middleware/preventGuest.js";
+import { validateAdmin } from "../middleware/adminValidation.js";
 
 const router = Router();
 
@@ -18,9 +19,8 @@ const router = Router();
 // POST route for adding a new customer
 router.post("/", validateCustomer, createCustomerController);
 
-/* // GET route for fetching all customers
-router.get("/", bodyContentBlocker, getAllCustomersController);
- */
+// GET route for fetching all customers
+router.get("/", validateAdmin, bodyContentBlocker, getAllCustomersController);
 
 // GET route for customer profile
 router.get("/profile", bodyContentBlocker, getCustomerByIdController);

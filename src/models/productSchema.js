@@ -1,7 +1,7 @@
 import Joi from "joi";
 
 const productSchema = Joi.object({
-  title: Joi.string().min(3).max(50).required().messages({
+  title: Joi.string().min(2).max(50).required().messages({
     "string.base": '"title" should be a type of text',
     "string.empty": '"title" cannot be an empty field',
     "string.min": '"title" should have a minimum length of 3 characters',

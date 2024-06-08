@@ -1,13 +1,14 @@
 import { Router } from "express";
-//import { validateProduct } from "../middleware/productValidation.js"; // Import the validation middleware
+import { validateProduct } from "../middleware/productValidation.js"; // Import the validation middleware
 import {
-  // createProduct,
+  createProduct,
   getAllProducts,
   getProductById,
-  // updateProduct,
-  // deleteProduct,
+  updateProduct,
+  deleteProduct,
 } from "../services/product.js";
 import { bodyContentBlocker } from "../middleware/bodyContentBlocker.js";
+import { validateAdmin } from "../middleware/adminValidation.js";
 
 const router = Router();
 
@@ -19,12 +20,12 @@ router.get("/", bodyContentBlocker, async (req, res) => {
   res.json(products);
 });
 
-/* // POST new menu item
-router.post("/", validateProduct, async (req, res) => {
+// POST new menu item
+router.post("/", validateAdmin, validateProduct, async (req, res) => {
   const newProduct = req.body;
   await createProduct(newProduct);
   res.status(201).json(newProduct);
-}); */
+});
 
 // GET specific menu item by _id
 router.get("/:id", bodyContentBlocker, async (req, res) => {
@@ -37,8 +38,8 @@ router.get("/:id", bodyContentBlocker, async (req, res) => {
   }
 });
 
-/* // UPDATE menu item by _id
-router.put("/:id", validateProduct, async (req, res) => {
+// UPDATE menu item by _id
+router.put("/:id", validateAdmin, validateProduct, async (req, res) => {
   const id = req.params.id;
   const updatedProduct = req.body;
   try {
@@ -51,10 +52,10 @@ router.put("/:id", validateProduct, async (req, res) => {
       res.status(500).json({ message: "Internal server error" });
     }
   }
-}); */
+});
 
-/* // DELETE menu item by _id
-router.delete("/:id", bodyContentBlocker, async (req, res) => {
+// DELETE menu item by _id
+router.delete("/:id", validateAdmin, bodyContentBlocker, async (req, res) => {
   const id = req.params.id;
   try {
     await deleteProduct(id);
@@ -66,6 +67,6 @@ router.delete("/:id", bodyContentBlocker, async (req, res) => {
       res.status(500).json({ message: "Internal server error" });
     }
   }
-}); */
+});
 
 export default router;

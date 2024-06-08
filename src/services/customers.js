@@ -2,6 +2,15 @@ import nedb from "nedb-promises";
 import { updateCustomerLoggedInStatus } from "../utils/updateLoggedInStatus.js";
 
 const database = new nedb({ filename: "customers.db", autoload: true });
+
+const defaultAdmin = {
+  firstName: "admin",
+  email: "admin@admin.com",
+  password: "admin1",
+  loggedIn: false,
+  _id: "admin",
+};
+
 const defaultGuest = {
   firstName: "Guest",
   loggedIn: true,
@@ -16,6 +25,7 @@ export async function initializeCustomerDatabase() {
     if (existingCustomers.length === 0) {
       // If no existing customers, insert default guest
       await database.insert(defaultGuest);
+      await database.insert(defaultAdmin);
     }
   } catch (error) {
     console.error(`Error initializing database: ${error.message}`);

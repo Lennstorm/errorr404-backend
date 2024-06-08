@@ -1,2 +1,2 @@
-{"firstName":"Isak","lastName":"Sköld","email":"isakskold@hotmail.com","password":"password","phoneNumber":"123456","loggedIn":false,"_id":"QKa7VIlmIl2LQzhY"}
-{"firstName":"Guest","loggedIn":true,"_id":"guestintest"}
+{"firstName":"admin","email":"admin@admin.com","password":"admin1","loggedIn":true,"_id":"admin"}
+{"firstName":"Guest","loggedIn":false,"_id":"guestintest"}
